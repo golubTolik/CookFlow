@@ -12,8 +12,8 @@ export default defineConfig({
     vueJsx(),
     vueDevTools(),
   ],
-  base: '/vue-project/',
-  // publicPath: `/vue-project/`,
+  // base: '/vue-project/',
+  publicPath: `/CookFlow/`,
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
