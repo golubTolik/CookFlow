@@ -12,10 +12,7 @@ export default defineConfig({
     vueJsx(),
     vueDevTools(),
   ],
-  // base: '/vue-project/',
   base: '/CookFlow/',
-  // publicPath: `/CookFlow/`,
-  // publicPath: `/vue-project/`,
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
