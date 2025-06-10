@@ -14,7 +14,7 @@ export default {
 </script>
 
 <template>
-  <div class="justify-center flex-column" >
+  <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6" >
     <ListItem
         v-for="recipe in recipes"
         :key="recipe.id"
