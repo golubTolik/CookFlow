@@ -112,7 +112,7 @@ export default {
                         
                 <!-- Фильтр по кухне -->
                 <div class="!mb-6 filter-section">
-                    <h3 class="font-bold text-gray-700 !mb-3 !pb-2 border-b">Кухня</h3>
+                    <h3 class="!font-bold text-gray-700 !mb-3 !pb-2 border-b">Кухня</h3>
                     <div class="space-y-2">
                         <div class="filter-option">
                             <label class="flex items-center cursor-pointer !py-1 !px-2 rounded">
