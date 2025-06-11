@@ -128,7 +128,7 @@ export default {
 <template>
     <header class="items-center font-[Comfortaa]">
         <div class="container !mx-auto flex justify-between items-center">
-            <div class="w-[200px]"><img src="./components/icons/logo3.png" alt=""></div>
+            <div class="w-[200px]"><img src="../src/components/icons/logo3.png" alt=""></div>
             <div class="controls">
                 <input checked type="radio" name="name" id="input1" class="hidden">
                 <input type="radio" name="name" id="input2" class="hidden">
