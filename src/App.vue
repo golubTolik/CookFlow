@@ -92,22 +92,22 @@ export default {
         resetFilters() {
             this.selectedFilters.cuisine = [];
             this.selectedFilters.difficulty = [];
-            this.searchTerm.value = '';
+            this.searchTerm = '';
         },
     },
     computed: {
         // Вычисляемые свойства для фильтров
         availableCuisines() {
-            return [...new Set(this.dishes.value.map(dish => dish.cuisine))];
+            return [...new Set(this.dishes.map(dish => dish.cuisine))];
         },
                     
         availableDifficulties() {
-            return [...new Set(this.dishes.value.map(dish => dish.difficulty))];
+            return [...new Set(this.dishes.map(dish => dish.difficulty))];
         },
         filteredDishes() {
-            return this.dishes.value.filter(dish => {
+            return this.dishes.filter(dish => {
                 // Поиск по названию
-                const matchesSearch = dish.name.toLowerCase().includes(this.searchTerm.value.toLowerCase());
+                const matchesSearch = dish.name.toLowerCase().includes(this.searchTerm.toLowerCase());
                             
                 // Фильтр по кухне
                 const matchesCuisine = this.selectedFilters.cuisine.length === 0 || 
@@ -120,15 +120,15 @@ export default {
                 return matchesSearch && matchesCuisine && matchesDifficulty;
             });
         },
+        
     }
 }
 </script>
 
 <template>
-    <header class="!mb-5 items-center font-[Comfortaa]">
+    <header class="items-center font-[Comfortaa]">
         <div class="container !mx-auto flex justify-between items-center">
             <div class="w-[200px]"><img src="./components/icons/logo3.png" alt=""></div>
-            <!-- <h1 class="text-3xl md:text-4xl font-bold mb-4 md:mb-0">🍳 Коллекция рецептов</h1> -->
             <div class="controls">
                 <input checked type="radio" name="name" id="input1" class="hidden">
                 <input type="radio" name="name" id="input2" class="hidden">
@@ -164,12 +164,12 @@ export default {
                         >
                             <label class="flex items-center cursor-pointer py-1 px-2 rounded">
                                 <input 
-                                    type="checkbox" 
+                                    type="checkbox"
                                     v-model="selectedFilters.cuisine" 
                                     :value="cuisine"
                                     class="rounded text-orange-500 focus:ring-orange-500"
                                 >
-                                <span class="ml-2 text-gray-600">{{ cuisine }}</span>
+                                <span class="!ml-2 text-gray-600">{{ cuisine }}</span>
                             </label>
                         </div>
                     </div>
@@ -191,7 +191,7 @@ export default {
                                     :value="difficulty"
                                     class="rounded text-orange-500 focus:ring-orange-500"
                                 >
-                                <span class="ml-2 text-gray-600">{{ difficulty }}</span>
+                                <span class="!ml-2 text-gray-600">{{ difficulty }}</span>
                             </label>
                         </div>
                     </div>
@@ -204,11 +204,14 @@ export default {
                     v-model="searchTerm"
                     type="text" 
                     placeholder="Поиск рецептов..." 
-                    class="!w-full !py-3 !px-4 !pl-12 rounded-full bg-[#06D6A0] bg-opacity-20 placeholder-white text-white focus:outline-none focus:ring-2 focus:ring-white focus:bg-opacity-30 transition"
+                    class="!w-full !mb-2 !py-3 !px-4 !pl-12 rounded-full border-2 border-[#06D6A0] bg-opacity-20 placeholder-gray-400 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:bg-opacity-30 transition"
                 >
-                <!-- <i class="fas fa-search absolute left-4 top-3.5 text-white"></i> -->
+                <img class="!w-[16px] absolute left-4 top-4.5" src="../src/components/icons/search.svg" alt="">
             </div>
-            <List  v-bind:dishes="filteredDishes"></List>
+            <List v-if="filteredDishes.length > 0" v-bind:dishes="filteredDishes"></List>
+            <div v-else class="text-center py-12">
+                <p class="text-xl text-gray-500">Ничего не найдено</p>
+            </div>
         </div>
         
     </body>
