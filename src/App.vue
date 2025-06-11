@@ -175,20 +175,18 @@ export default {
             </div>
         </div>
         <div class="w-full lg:w-3/4">
-            
+
             <SearchBar
                 v-model="searchTerm"
             />
 
-            <List v-if="filteredDishes.length > 0" v-bind:dishes="filteredDishes"></List>
-            <div v-else class="text-center py-12">
-                <p class="text-xl text-gray-500">Ничего не найдено</p>
-            </div>
+            <List v-bind:dishes="filteredDishes" @resetFilters="resetFilters"></List>
+
         </div>
         
     </body>
-    <footer class="">
-
+    <footer class="py-8 text-center text-gray-500">
+        © 2023 Коллекция рецептов. Все права защищены.
     </footer>
 </template>
 
