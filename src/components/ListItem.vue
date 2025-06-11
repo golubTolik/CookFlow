@@ -31,7 +31,7 @@ export default {
         <p class="text-gray-600 mb-4">{{ dishe.description }}</p>
         <div class="flex justify-between items-center">
             <span class="text-sm text-gray-500">{{ dishe.cuisine }}</span>
-            <span class="text-sm text-gray-500">{{ dishe.cookingTime }} мин</span>
+            <span class="text-sm text-gray-500 flex"><img class="w-[16px] !mr-[5px]" src="../components/icons/clock.svg" alt="">{{ dishe.cookingTime }} мин</span>
         </div>
       </div>
   </div>
