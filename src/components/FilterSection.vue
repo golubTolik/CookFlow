@@ -30,10 +30,10 @@ export default {
 <template>
   <div class="filter-section">
     <div 
-      class="!font-bold text-gray-700 !mb-3 !pb-2 border-b border-gray-300 font-[Comfortaa] cursor-pointer flex justify-between items-center"
+      class="text-gray-700 !mb-3 !pb-2 border-b border-gray-300 font-[Comfortaa] cursor-pointer flex justify-between items-center"
       @click="toggle"
     >
-      <h3>{{ title }}</h3>
+      <h3 class="!font-bold">{{ title }}</h3>
       <svg 
         class="w-5 h-5 transition-transform duration-300" 
         :class="{ 'rotate-180': !isOpen }" 
