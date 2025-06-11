@@ -1,9 +1,13 @@
 <script >
 import List from './components/List.vue';
+import FilterSection from './components/FilterSection.vue';
+import SearchBar from './components/SearchBar.vue';
 
 export default {
     components:{
-        List
+        List,
+        FilterSection,
+        SearchBar
     },
     data() {
         return{
@@ -87,8 +91,6 @@ export default {
             },
             searchTerm: '',
 
-            isCuisineOpen: true,
-            isDifficultyOpen: true
         }
     },
     methods: {
@@ -96,13 +98,6 @@ export default {
             this.selectedFilters.cuisine = [];
             this.selectedFilters.difficulty = [];
             this.searchTerm = '';
-        },
-        toggleFilter(filterType) {
-            if (filterType === 'cuisine') {
-                this.isCuisineOpen = !this.isCuisineOpen;
-            } else if (filterType === 'difficulty') {
-                this.isDifficultyOpen = !this.isDifficultyOpen;
-            }
         },
     },
     computed: {
@@ -164,88 +159,27 @@ export default {
                 </div>
                         
                 <!-- Фильтр по кухне -->
-                <div class="!mb-6 filter-section">
-                    <div 
-                        class="!font-bold text-gray-700 !mb-3 !pb-2 border-b border-gray-300 font-[Comfortaa] cursor-pointer flex justify-between items-center"
-                        @click="toggleFilter('cuisine')"
-                    >
-                        <h3>Кухня</h3>
-                        <svg 
-                            class="w-5 h-5 transition-transform duration-300" 
-                            :class="{ 'rotate-180': !isCuisineOpen }" 
-                            fill="none" 
-                            stroke="currentColor" 
-                            viewBox="0 0 24 24"
-                        >
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </div>
-                    <div v-show="isCuisineOpen" class=" mt-3 max-h-60 overflow-y-auto">
-                        <div 
-                            v-for="cuisine in availableCuisines" 
-                            :key="cuisine"
-                            class="filter-option"
-                        >
-                            <label class="flex items-center cursor-pointer py-1 px-2 rounded" @selectstart.prevent>
-                                <input 
-                                    type="checkbox"
-                                    v-model="selectedFilters.cuisine"
-                                    :value="cuisine"
-                                    class="rounded text-orange-500 focus:ring-orange-500"
-                                >
-                                <span class="!ml-2 text-gray-600">{{ cuisine }}</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
+                 <FilterSection 
+                  class="!mb-6"
+                  title="Кухня"
+                  :options="availableCuisines"
+                  v-model="selectedFilters.cuisine"
+                />
                         
                 <!-- Фильтр по сложности -->
-                <div class="filter-section">
-                    <div 
-                        class="!font-bold text-gray-700 !mb-3 !pb-2 border-b border-gray-300 font-[Comfortaa] cursor-pointer flex justify-between items-center"
-                        @click="toggleFilter('difficulty')"
-                    >
-                        <h3>Сложность</h3>
-                        <svg 
-                            class="w-5 h-5 transition-transform duration-300" 
-                            :class="{ 'rotate-180': !isDifficultyOpen }" 
-                            fill="none" 
-                            stroke="currentColor" 
-                            viewBox="0 0 24 24"
-                        >
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </div>
-                    <div v-show="isDifficultyOpen" class="space-y-2 mt-3 max-h-60 overflow-y-auto">
-                        <div 
-                            v-for="difficulty in availableDifficulties" 
-                            :key="difficulty"
-                            class="filter-option"
-                        >
-                            <label class="flex items-center cursor-pointer py-1 px-2 rounded" @selectstart.prevent>
-                                <input 
-                                    type="checkbox" 
-                                    v-model="selectedFilters.difficulty"
-                                    :value="difficulty"
-                                    class="rounded text-orange-500 focus:ring-orange-500"
-                                >
-                                <span class="!ml-2 text-gray-600">{{ difficulty }}</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
+                 <FilterSection 
+                  title="Сложность"
+                  :options="availableDifficulties"
+                  v-model="selectedFilters.difficulty"
+                />
             </div>
         </div>
         <div class="w-full lg:w-3/4">
-            <div class="relative w-full md:w-1/3">
-                <input 
-                    v-model="searchTerm"
-                    type="text" 
-                    placeholder="Поиск рецептов..." 
-                    class="!w-full !mb-2 !py-3 !px-4 !pl-12 rounded-full border-2 border-[#06D6A0] bg-opacity-20 placeholder-gray-400 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:bg-opacity-30 transition"
-                >
-                <img class="!w-[16px] absolute left-4 top-4.5" src="../src/components/icons/search.svg" alt="">
-            </div>
+            
+            <SearchBar
+                v-model="searchTerm"
+            />
+
             <List v-if="filteredDishes.length > 0" v-bind:dishes="filteredDishes"></List>
             <div v-else class="text-center py-12">
                 <p class="text-xl text-gray-500">Ничего не найдено</p>
@@ -274,29 +208,4 @@ export default {
     text-decoration-color: #06D6A0;
 }
 
-.filter-section {
-    transition: all 0.3s ease;
-}
-.filter-option {
-    transition: background-color 0.2s;
-}
-.filter-option:hover {
-    background-color: #f3f4f6;
-}
-
-/* Стили для скролла в выпадающих списках */
-.max-h-60::-webkit-scrollbar {
-    width: 6px;
-}
-.max-h-60::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-}
-.max-h-60::-webkit-scrollbar-thumb {
-    background: #c5c5c5;
-    border-radius: 4px;
-}
-.max-h-60::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
-}
 </style>
