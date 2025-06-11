@@ -128,7 +128,7 @@ export default {
 <template>
     <header class="items-center font-[Comfortaa]">
         <div class="container !mx-auto flex justify-between items-center">
-            <div class="w-[200px]"><img src="../src/components/icons/logo3.png" alt=""></div>
+            <div class="w-[200px]"><img src="../src/components/icons/logo4.png" alt=""></div>
             <div class="controls">
                 <input checked type="radio" name="name" id="input1" class="hidden">
                 <input type="radio" name="name" id="input2" class="hidden">
@@ -162,14 +162,14 @@ export default {
                             :key="cuisine"
                             class="filter-option"
                         >
-                            <label class="flex items-center cursor-pointer py-1 px-2 rounded">
+                            <label class="flex items-center cursor-pointer py-1 px-2 rounded" @selectstart.prevent>
                                 <input 
                                     type="checkbox"
                                     v-model="selectedFilters.cuisine" 
                                     :value="cuisine"
                                     class="rounded text-orange-500 focus:ring-orange-500"
                                 >
-                                <span class="!ml-2 text-gray-600">{{ cuisine }}</span>
+                                <span class="!ml-2 text-gray-600" >{{ cuisine }}</span>
                             </label>
                         </div>
                     </div>
@@ -184,14 +184,14 @@ export default {
                             :key="difficulty"
                             class="filter-option"
                         >
-                            <label class="flex items-center cursor-pointer py-1 px-2 rounded">
+                            <label class="flex items-center cursor-pointer py-1 px-2 rounded" @selectstart.prevent>
                                 <input 
                                     type="checkbox" 
                                     v-model="selectedFilters.difficulty" 
                                     :value="difficulty"
                                     class="rounded text-orange-500 focus:ring-orange-500"
                                 >
-                                <span class="!ml-2 text-gray-600">{{ difficulty }}</span>
+                                <span class="!ml-2 text-gray-600" >{{ difficulty }}</span>
                             </label>
                         </div>
                     </div>
