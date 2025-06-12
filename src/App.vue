@@ -101,8 +101,7 @@ export default {
                     cookingTime: 50,
                     typeOfMeal: ["ужин"],
                     typeOfDish: "второе блюдо",
-                }
-                ,
+                },
                 {
                     id: 10,
                     name: "Яйцо пашот в микроволновке",
@@ -176,8 +175,7 @@ export default {
                             
                 // Фильтр по типу приема пищи
                 const matchesTypeOfMeal = this.selectedFilters.typeOfMeal.length === 0 || 
-                    this.selectedFilters.typeOfMeal.includes(dish.typeOfMeal[0]) || 
-                    this.selectedFilters.typeOfMeal.includes(dish.typeOfMeal[1]);
+                    this.selectedFilters.typeOfMeal.some(meal => dish.typeOfMeal.includes(meal));
                             
                 // Фильтр по типу блюда
                 const matchesTypeOfDish = this.selectedFilters.typeOfDish.length === 0 || 
@@ -208,8 +206,9 @@ export default {
     </header>
     <body class="!bg-gray-50 flex flex-col lg:flex-row gap-8 container !mx-auto !px-4 !py-8">
         <div class="w-full lg:w-1/4">
-            <div class="bg-white rounded-xl shadow-md p-6 sticky top-4">
-                <div class="flex justify-between items-center !mb-6">
+            <div class="bg-white rounded-xl shadow-md p-6  top-4">
+                <!-- sticky -->
+                <div class="flex justify-between  items-center !mb-6">
                     <h2 class="text-xl !font-bold text-gray-800 font-[Comfortaa]">Фильтры</h2>
                     <button 
                         @click="resetFilters"
