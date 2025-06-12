@@ -1,4 +1,5 @@
 <script>
+
 export default {
   props: {
     title: String,
@@ -33,7 +34,7 @@ export default {
       class="text-gray-700 !mb-3 !pb-2 border-b border-gray-300 font-[Comfortaa] cursor-pointer flex justify-between items-center"
       @click="toggle"
     >
-      <h3 class="!font-bold">{{ title }}</h3>
+      <h3 class="!font-bold" @selectstart.prevent>{{ title }}</h3>
       <svg 
         class="w-5 h-5 transition-transform duration-300" 
         :class="{ 'rotate-180': !isOpen }" 
@@ -46,7 +47,7 @@ export default {
     </div>
     <div v-show="isOpen" class="space-y-2 mt-3 max-h-60 overflow-y-auto">
       <div 
-        v-for="option in options" 
+        v-for="option in options.sort((a,b)=> a-b)" 
         :key="option"
         class="filter-option"
       >
@@ -58,7 +59,7 @@ export default {
             @change="updateSelection(option, $event.target.checked)"
             class="rounded text-orange-500 focus:ring-orange-500"
           >
-          <span class="!ml-2 text-gray-600">{{ option }}</span>
+          <span class="!ml-2 text-gray-600">{{ option }} <span v-if="typeof(option)==='number'">мин</span></span>
         </label>
       </div>
     </div>

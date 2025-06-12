@@ -18,7 +18,9 @@ export default {
                     description: "Традиционное грузинское блюдо с яйцом и сыром в форме лодочки.",
                     cuisine: "Грузинская",
                     difficulty: "новичок",
-                    cookingTime: 40
+                    cookingTime: 40,
+                    typeOfMeal: ["обед", "ужин"],
+                    typeOfDish: "второе блюдо",
                 },
                 {
                     id: 2,
@@ -26,7 +28,9 @@ export default {
                     description: "Классический украинский суп со свеклой, капустой и сметаной.",
                     cuisine: "Русская",
                     difficulty: "любитель",
-                    cookingTime: 90
+                    cookingTime: 90,
+                    typeOfMeal: ["обед", "ужин"],
+                    typeOfDish: "первое блюдо",
                 },
                 {
                     id: 3,
@@ -34,7 +38,9 @@ export default {
                     description: "Итальянская паста с соусом из яиц, сыра пармезан и панчетты.",
                     cuisine: "Средиземноморская",
                     difficulty: "новичок",
-                    cookingTime: 25
+                    cookingTime: 25,
+                    typeOfMeal: ["обед", "ужин"],
+                    typeOfDish: "первое блюдо",
                 },
                 {
                     id: 4,
@@ -42,7 +48,9 @@ export default {
                     description: "Восточное блюдо из риса с бараниной, морковью и специями.",
                     cuisine: "Узбекская",
                     difficulty: "эксперт",
-                    cookingTime: 120
+                    cookingTime: 120,
+                    typeOfMeal: ["ужин"],
+                    typeOfDish: "второе блюдо",
                 },
                 {
                     id: 5,
@@ -50,7 +58,9 @@ export default {
                     description: "Классический салат с курицей, листьями салата и соусом Цезарь.",
                     cuisine: "Американская",
                     difficulty: "новичок",
-                    cookingTime: 20
+                    cookingTime: 20,
+                    typeOfMeal: ["перекус"],
+                    typeOfDish: "салат",
                 },
                 {
                     id: 6,
@@ -58,7 +68,9 @@ export default {
                     description: "Французское овощное рагу из баклажанов, кабачков и перцев.",
                     cuisine: "Французская",
                     difficulty: "любитель",
-                    cookingTime: 60
+                    cookingTime: 60,
+                    typeOfMeal: ["обед"],
+                    typeOfDish: "гарнир",
                 },
                 {
                     id: 7,
@@ -66,7 +78,9 @@ export default {
                     description: "Острый тайский суп с креветками, грибами и кокосовым молоком.",
                     cuisine: "Тайская",
                     difficulty: "эксперт",
-                    cookingTime: 45
+                    cookingTime: 45,
+                    typeOfMeal: ["обед"],
+                    typeOfDish: "первое блюдо",
                 },
                 {
                     id: 8,
@@ -74,7 +88,9 @@ export default {
                     description: "Традиционный русский салат с колбасой, картофелем и майонезом.",
                     cuisine: "Русская",
                     difficulty: "новичок",
-                    cookingTime: 30
+                    cookingTime: 30,
+                    typeOfMeal: ["перекус"],
+                    typeOfDish: "салат",
                 },
                 {
                     id: 9,
@@ -82,33 +98,52 @@ export default {
                     description: "Роллы с крабом, авокадо и огурцом, обернутые икрой тобико.",
                     cuisine: "Японская",
                     difficulty: "любитель",
-                    cookingTime: 50
+                    cookingTime: 50,
+                    typeOfMeal: ["ужин"],
+                    typeOfDish: "второе блюдо",
+                }
+                ,
+                {
+                    id: 10,
+                    name: "Яйцо пашот в микроволновке",
+                    description: "Суть яйца пашот кроется в его названии. В переводе с французского, это 'ошпаренный кипятком'.",
+                    cuisine: "Французская",
+                    difficulty: "новичок",
+                    cookingTime: 3,
+                    typeOfMeal: ["завтрак"],
+                    typeOfDish: "закуска",
                 }
             ],
             selectedFilters: {
                 cuisine: [],
-                difficulty: []
+                difficulty: [],
+                cookingTime: [],
+                typeOfMeal: [],
+                typeOfDish: [],
             },
             searchTerm: '',
-
+            availableDifficulties: ["новичок", "любитель","эксперт"],
+            availableTime: ["до 15 минут", "до 30 минут", "до 1 часа", "более часа"],
+            availableTypeOfMeal: ["завтрак", "обед", "полдник", "ужин", "перекус"],
+            availableTypeOfDish: ["первое блюдо", "второе блюдо", "салат", "закуска", "выпечка", "соус и маринад", "заготовка", "напиток", "десерт", "гарнир"],
         }
     },
     methods: {
         resetFilters() {
             this.selectedFilters.cuisine = [];
             this.selectedFilters.difficulty = [];
+            this.selectedFilters.cookingTime = [];
+            this.selectedFilters.typeOfMeal = [];
+            this.selectedFilters.typeOfDish = [];
             this.searchTerm = '';
         },
     },
     computed: {
-        // Вычисляемые свойства для фильтров
+        // Вычисляемые свойство для фильтра по кухне
         availableCuisines() {
             return [...new Set(this.dishes.map(dish => dish.cuisine))];
         },
-                    
-        availableDifficulties() {
-            return [...new Set(this.dishes.map(dish => dish.difficulty))];
-        },
+
         filteredDishes() {
             return this.dishes.filter(dish => {
                 // Поиск по названию
@@ -121,8 +156,34 @@ export default {
                 // Фильтр по сложности
                 const matchesDifficulty = this.selectedFilters.difficulty.length === 0 || 
                     this.selectedFilters.difficulty.includes(dish.difficulty);
+                
+                // Фильтр по времени
+                const matchesTime = this.selectedFilters.cookingTime.length === 0 || 
+                    this.selectedFilters.cookingTime.some(timeRange => {
+                        switch(timeRange) {
+                            case "до 15 минут":
+                                return dish.cookingTime <= 15;
+                            case "до 30 минут":
+                                return dish.cookingTime <= 30;
+                            case "до 1 часа":
+                                return dish.cookingTime <= 60;
+                            case "более часа":
+                                return dish.cookingTime > 60;
+                            default:
+                                return true;
+                        }
+                    });
                             
-                return matchesSearch && matchesCuisine && matchesDifficulty;
+                // Фильтр по типу приема пищи
+                const matchesTypeOfMeal = this.selectedFilters.typeOfMeal.length === 0 || 
+                    this.selectedFilters.typeOfMeal.includes(dish.typeOfMeal[0]) || 
+                    this.selectedFilters.typeOfMeal.includes(dish.typeOfMeal[1]);
+                            
+                // Фильтр по типу блюда
+                const matchesTypeOfDish = this.selectedFilters.typeOfDish.length === 0 || 
+                    this.selectedFilters.typeOfDish.includes(dish.typeOfDish);
+
+                return matchesSearch && matchesCuisine && matchesDifficulty && matchesTime && matchesTypeOfMeal && matchesTypeOfDish;
             });
         },
         
@@ -168,9 +229,34 @@ export default {
                         
                 <!-- Фильтр по сложности -->
                  <FilterSection 
+                  class="!mb-6"
                   title="Сложность"
                   :options="availableDifficulties"
                   v-model="selectedFilters.difficulty"
+                />
+
+                <!-- Фильтр по времени -->
+                 <FilterSection 
+                  class="!mb-6"
+                  title="Время приготовления"
+                  :options="availableTime"
+                  v-model="selectedFilters.cookingTime"
+                />
+
+                <!-- Фильтр по типу приема пищи -->
+                 <FilterSection 
+                  class="!mb-6"
+                  title="Тип приема пищи"
+                  :options="availableTypeOfMeal"
+                  v-model="selectedFilters.typeOfMeal"
+                />
+
+                <!-- Фильтр по типу блюда -->
+                 <FilterSection 
+                  class="!mb-6"
+                  title="Тип блюда"
+                  :options="availableTypeOfDish"
+                  v-model="selectedFilters.typeOfDish"
                 />
             </div>
         </div>
@@ -186,7 +272,7 @@ export default {
         
     </body>
     <footer class="py-8 text-center text-gray-500">
-        © 2023 Коллекция рецептов. Все права защищены.
+        © 2025 Коллекция рецептов. Все права защищены.
     </footer>
 </template>
 
