@@ -12,10 +12,10 @@ export default {
 <template>
   <div class="dishe-card bg-white rounded-xl shadow-md overflow-hidden">
     <div class="h-48 overflow-hidden">
-        <div class="w-full h-full bg-gray-200  rounded-xl flex items-center justify-center text-gray-500">
-            <img src="" alt="../components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg">
-            <!-- <img class="w-[32px] text-4xl" src="../components/icons/food.svg" alt=""> -->
-        </div>
+      <img v-if="dishe.img" class="" :src="dishe.img" alt="">
+      <div v-else class="w-full h-full bg-gray-200  rounded-xl flex items-center justify-center text-gray-500">
+        <img  class="w-[32px] text-4xl" src="../components/icons/food.svg" alt="">
+      </div>
     </div>
     <div class="p-5">
         <div class="flex justify-between items-start mb-2">
