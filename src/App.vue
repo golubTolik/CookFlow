@@ -4,6 +4,7 @@ import FilterSection from './components/FilterSection.vue';
 import SearchBar from './components/SearchBar.vue';
 import Dialog from './components/UIcomponents/Dialog.vue';
 import Login from './components/Login.vue';
+import FiltersPanel from './components/FiltersPanel.vue';
 
 export default {
     components:{
@@ -12,6 +13,7 @@ export default {
         SearchBar,
         Dialog,
         Login,
+        FiltersPanel
     },
     data() {
         return{
@@ -225,57 +227,15 @@ export default {
     </header>
     <body class="!bg-gray-50 flex flex-col lg:flex-row gap-8 container !mx-auto !px-4 !py-8">
         <div class="w-full lg:w-1/4">
-            <div class="bg-white rounded-xl shadow-md p-6  top-4">
-                <div class="flex justify-between  items-center !mb-6">
-                    <h2 class="text-xl !font-bold text-gray-800 font-[Comfortaa]">Фильтры</h2>
-                    <button 
-                        @click="resetFilters"
-                        class="text-sm bg-gray-100 hover:bg-gray-200 text-gray-800 py-1 px-3 rounded-full transition"
-                    >
-                        Сбросить
-                    </button>
-                </div>
-                        
-                <!-- Фильтр по кухне -->
-                 <FilterSection 
-                  class="!mb-6"
-                  title="Кухня"
-                  :options="availableCuisines"
-                  v-model="selectedFilters.cuisine"
-                />
-                        
-                <!-- Фильтр по сложности -->
-                 <FilterSection 
-                  class="!mb-6"
-                  title="Сложность"
-                  :options="availableDifficulties"
-                  v-model="selectedFilters.difficulty"
-                />
-
-                <!-- Фильтр по времени -->
-                 <FilterSection 
-                  class="!mb-6"
-                  title="Время приготовления"
-                  :options="availableTime"
-                  v-model="selectedFilters.cookingTime"
-                />
-
-                <!-- Фильтр по типу приема пищи -->
-                 <FilterSection 
-                  class="!mb-6"
-                  title="Тип приема пищи"
-                  :options="availableTypeOfMeal"
-                  v-model="selectedFilters.typeOfMeal"
-                />
-
-                <!-- Фильтр по типу блюда -->
-                 <FilterSection 
-                  class="!mb-6"
-                  title="Тип блюда"
-                  :options="availableTypeOfDish"
-                  v-model="selectedFilters.typeOfDish"
-                />
-            </div>
+            <FiltersPanel 
+                v-model:modelValue="selectedFilters"
+                :available-cuisines="availableCuisines"
+                :available-difficulties="availableDifficulties"
+                :available-time="availableTime"
+                :available-type-of-meal="availableTypeOfMeal"
+                :available-type-of-dish="availableTypeOfDish"
+                @reset="resetFilters"
+            />
         </div>
         <div class="w-full lg:w-3/4">
 

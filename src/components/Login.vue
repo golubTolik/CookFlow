@@ -26,14 +26,13 @@ export default {
 
 <template>
 <div class="form">
-        <form @submit.prevent @click.stop>
-          <!-- <button class="btn-clouse" @click="this.$emit('update:show',false);">X</button> -->
-          <strong>Введите логин:</strong>
-          <input type="text" class="input" placeholder="Введите логин" v-model="login">
-          <strong>Введите пароль:</strong>
-          <input type="text" class="input" placeholder="Введите пароль" v-model="password">
-          <div class="btn-form  btn-down"><button  @click="avto">Авторизация</button></div>
-       </form>
+    <form @submit.prevent @click.stop>
+        <strong>Введите логин:</strong>
+        <input type="text" class="input" placeholder="Введите логин" v-model="login">
+        <strong>Введите пароль:</strong>
+        <input type="text" class="input" placeholder="Введите пароль" v-model="password">
+        <div class="btn-form  btn-down"><button  @click="avto">Авторизация</button></div>
+    </form>
 </div>
 </template>
 
