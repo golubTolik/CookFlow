@@ -26,7 +26,7 @@ export default {
                 {
                     id: 2,
                     name: "Борщ",
-                    img: "./src/components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg",
+                    img: "./src/components/icons/borsh.jpg",
                     description: "Классический украинский суп со свеклой, капустой и сметаной.",
                     cuisine: "Русская",
                     difficulty: "любитель",
@@ -37,7 +37,7 @@ export default {
                 {
                     id: 3,
                     name: "Паста Карбонара",
-                    img: "./src/components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg",
+                    img: "./src/components/icons/macarrao-com-presunto.jpeg",
                     description: "Итальянская паста с соусом из яиц, сыра пармезан и панчетты.",
                     cuisine: "Средиземноморская",
                     difficulty: "новичок",
@@ -48,7 +48,7 @@ export default {
                 {
                     id: 4,
                     name: "Плов",
-                    img: "./src/components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg",
+                    img: "./src/components/icons/plov.jpg",
                     description: "Восточное блюдо из риса с бараниной, морковью и специями.",
                     cuisine: "Узбекская",
                     difficulty: "эксперт",
@@ -59,7 +59,7 @@ export default {
                 {
                     id: 5,
                     name: "Салат Цезарь",
-                    img: "./src/components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg",
+                    img: "./src/components/icons/cezar.jpg",
                     description: "Классический салат с курицей, листьями салата и соусом Цезарь.",
                     cuisine: "Американская",
                     difficulty: "новичок",
@@ -70,7 +70,7 @@ export default {
                 {
                     id: 6,
                     name: "Рататуй",
-                    img: "./src/components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg",
+                    img: "./src/components/icons/rattatyi.jpg",
                     description: "Французское овощное рагу из баклажанов, кабачков и перцев.",
                     cuisine: "Французская",
                     difficulty: "любитель",
@@ -81,7 +81,7 @@ export default {
                 {
                     id: 7,
                     name: "Том Ям",
-                    img: "./src/components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg",
+                    img: "./src/components/icons/tomYm.png",
                     description: "Острый тайский суп с креветками, грибами и кокосовым молоком.",
                     cuisine: "Тайская",
                     difficulty: "эксперт",
@@ -92,7 +92,7 @@ export default {
                 {
                     id: 8,
                     name: "Оливье",
-                    img: "./src/components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg",
+                    img: "./src/components/icons/olivie.jpg",
                     description: "Традиционный русский салат с колбасой, картофелем и майонезом.",
                     cuisine: "Русская",
                     difficulty: "новичок",
@@ -103,7 +103,7 @@ export default {
                 {
                     id: 9,
                     name: "Суши Калифорния",
-                    img: "./src/components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg",
+                    img: "./src/components/icons/kalifonia.jpg",
                     description: "Роллы с крабом, авокадо и огурцом, обернутые икрой тобико.",
                     cuisine: "Японская",
                     difficulty: "любитель",
@@ -114,7 +114,7 @@ export default {
                 {
                     id: 10,
                     name: "Яйцо пашот в микроволновке",
-                    img: "./src/components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg",
+                    img: "./src/components/icons/pashot.jpg",
                     description: "Суть яйца пашот кроется в его названии. В переводе с французского, это 'ошпаренный кипятком'.",
                     cuisine: "Французская",
                     difficulty: "новичок",
