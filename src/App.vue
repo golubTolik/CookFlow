@@ -221,7 +221,7 @@ export default {
             </div>
             <div class="cursor-pointer text-xl !px-6 !py-1 border-1 border-[#06D6A0] duration-200 rounded-full capitalize text-black hover:bg-[#06D6A0] hover:-translate-y-1 hover:shadow-lg" @click="dialogVisible=true"><p>Войти</p></div>
             <Dialog v-model:show="dialogVisible">
-                <Login @close="dialogVisible = false"/>
+                <Login v-model:show="dialogVisible"/>
             </Dialog>
         </div>
     </header>
