@@ -237,7 +237,7 @@ export default {
             <div class="flex w-[300%]"
                  :style="{ transform: sliderPosition }">
                 <div class="slide w-1/3" v-show="currentSlide === 1" key="slide1">
-                   <div class="flex flex-col lg:flex-row gap-8 container !mx-auto !px-4 !py-8 text-black">
+                   <div class="flex flex-col lg:flex-row gap-8 container !mx-auto !px-4 !py-8 text-gray-800">
                         h
                     </div>
                 </div>
@@ -261,7 +261,7 @@ export default {
                     </div>
                 </div>
                 <div class="slide w-1/3" v-show="currentSlide === 3" key="slide3">
-                    <div class="flex flex-col lg:flex-row gap-8 container !mx-auto !px-4 !py-8 text-black">
+                    <div class="flex flex-col lg:flex-row gap-8 container !mx-auto !px-4 !py-8 text-gray-800">
                         o
                     </div>
                 </div>
