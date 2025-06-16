@@ -146,6 +146,11 @@ export default {
             availableTypeOfDish: ["первое блюдо", "второе блюдо", "салат", "закуска", "выпечка", "соус и маринад", "заготовка", "напиток", "десерт", "гарнир"],
         }
     },
+    created() {
+        // Восстанавливаем текущий слайд при создании компонента
+        const savedSlide = sessionStorage.getItem('currentSlide');
+        if (savedSlide) this.currentSlide = JSON.parse(savedSlide);
+    },
     methods: {
         resetFilters() {
             this.selectedFilters.cuisine = [];
@@ -157,6 +162,7 @@ export default {
         },
         goToSlide(slideNumber) {
             this.currentSlide = slideNumber;
+            sessionStorage.setItem('currentSlide', JSON.stringify(this.currentSlide));
         },
         openDishe(id){
             console.log(this.dishes[id-1])
@@ -166,6 +172,7 @@ export default {
         sliderPosition() {
             return `translateX(-${(this.currentSlide - 1) * 0}%)`;
         },
+
         // Вычисляемые свойство для фильтра по кухне
         availableCuisines() {
             return [...new Set(this.dishes.map(dish => dish.cuisine))];
@@ -221,7 +228,7 @@ export default {
     <header class="items-center font-[Comfortaa]">
         <div class="container !mx-auto flex justify-between items-center">
             <div class="w-[200px]"><img src="../src/components/icons/logo4.png" alt=""></div>
-            <div class="controls">
+            <div class="controls" @selectstart.prevent>
                 <label @click="goToSlide(1)" :class="{active: currentSlide === 1}" class="cursor-pointer text-[20px] text-[#929292] !mr-[10px] duration-200 underline decoration-[#929292] decoration-[2px] underline-offset-[5px]">Главная</label>
                 <label @click="goToSlide(2)" :class="{active: currentSlide === 2}" class="cursor-pointer text-[20px] text-[#929292] !mr-[10px] duration-200 underline decoration-[#929292] decoration-[2px] underline-offset-[5px]">Рецепты</label>
                 <label @click="goToSlide(3)" :class="{active: currentSlide === 3}" class="cursor-pointer text-[20px] text-[#929292] !mr-[10px] duration-200 underline decoration-[#929292] decoration-[2px] underline-offset-[5px]">Статьи</label>
@@ -234,7 +241,7 @@ export default {
     </header>
     <body class="!bg-gray-50 !w-[100%] overflow-hidden">
         <div class="slides-container relative w-full overflow-hidden">
-            <div class="flex w-[300%] "
+            <div class="flex w-[300%]"
                  :style="{ transform: sliderPosition }">
                 <div class="slide w-1/3" v-show="currentSlide === 1" key="slide1">
                    <div class="flex flex-col lg:flex-row gap-8 container !mx-auto !px-4 !py-8 text-black">
