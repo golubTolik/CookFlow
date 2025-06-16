@@ -19,6 +19,7 @@ export default {
         v-for="dishe in dishes"
         :key="dishe.id"
         :dishe="dishe"
+        @openDishe="$emit('openDishe',dishe.id)"
     />
     
   </div>

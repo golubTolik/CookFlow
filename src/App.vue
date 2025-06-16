@@ -18,6 +18,7 @@ export default {
     data() {
         return{
             dialogVisible: false,
+            currentSlide: 1,
 
             dishes : [
                 {
@@ -154,8 +155,17 @@ export default {
             this.selectedFilters.typeOfDish = [];
             this.searchTerm = '';
         },
+        goToSlide(slideNumber) {
+            this.currentSlide = slideNumber;
+        },
+        openDishe(id){
+            console.log(this.dishes[id-1])
+        },
     },
     computed: {
+        sliderPosition() {
+            return `translateX(-${(this.currentSlide - 1) * 0}%)`;
+        },
         // Вычисляемые свойство для фильтра по кухне
         availableCuisines() {
             return [...new Set(this.dishes.map(dish => dish.cuisine))];
@@ -212,12 +222,9 @@ export default {
         <div class="container !mx-auto flex justify-between items-center">
             <div class="w-[200px]"><img src="../src/components/icons/logo4.png" alt=""></div>
             <div class="controls">
-                <input checked type="radio" name="name" id="input1" class="hidden">
-                <input type="radio" name="name" id="input2" class="hidden">
-                <input type="radio" name="name" id="input3" class="hidden">
-                <label for="input1" id="label1" class="cursor-pointer text-[20px] text-[#929292] !mr-[10px] duration-200 underline decoration-[#929292] decoration-[2px] underline-offset-[5px]">Главная</label>
-                <label for="input2" id="label2" class="cursor-pointer text-[20px] text-[#929292] !mr-[10px] duration-200 underline decoration-[#929292] decoration-[2px] underline-offset-[5px]">Рецепты</label>
-                <label for="input3" id="label3" class="cursor-pointer text-[20px] text-[#929292] !mr-[10px] duration-200 underline decoration-[#929292] decoration-[2px] underline-offset-[5px]">Статьи</label>
+                <label @click="goToSlide(1)" :class="{active: currentSlide === 1}" class="cursor-pointer text-[20px] text-[#929292] !mr-[10px] duration-200 underline decoration-[#929292] decoration-[2px] underline-offset-[5px]">Главная</label>
+                <label @click="goToSlide(2)" :class="{active: currentSlide === 2}" class="cursor-pointer text-[20px] text-[#929292] !mr-[10px] duration-200 underline decoration-[#929292] decoration-[2px] underline-offset-[5px]">Рецепты</label>
+                <label @click="goToSlide(3)" :class="{active: currentSlide === 3}" class="cursor-pointer text-[20px] text-[#929292] !mr-[10px] duration-200 underline decoration-[#929292] decoration-[2px] underline-offset-[5px]">Статьи</label>
             </div>
             <div class="cursor-pointer text-xl !px-6 !py-1 border-1 border-[#06D6A0] duration-200 rounded-full capitalize text-black hover:bg-[#06D6A0] hover:-translate-y-1 hover:shadow-lg" @click="dialogVisible=true"><p>Войти</p></div>
             <Dialog v-model:show="dialogVisible">
@@ -225,49 +232,61 @@ export default {
             </Dialog>
         </div>
     </header>
-    <body class="!bg-gray-50 flex flex-col lg:flex-row gap-8 container !mx-auto !px-4 !py-8">
-        <div class="w-full lg:w-1/4">
-            <FiltersPanel 
-                v-model:modelValue="selectedFilters"
-                :available-cuisines="availableCuisines"
-                :available-difficulties="availableDifficulties"
-                :available-time="availableTime"
-                :available-type-of-meal="availableTypeOfMeal"
-                :available-type-of-dish="availableTypeOfDish"
-                @reset="resetFilters"
-            />
+    <body class="!bg-gray-50 !w-[100%] overflow-hidden">
+        <div class="slides-container relative w-full overflow-hidden">
+            <div class="flex w-[300%] "
+                 :style="{ transform: sliderPosition }">
+                <div class="slide w-1/3" v-show="currentSlide === 1" key="slide1">
+                   <div class="flex flex-col lg:flex-row gap-8 container !mx-auto !px-4 !py-8 text-black">
+                        h
+                    </div>
+                </div>
+                <div class="slide w-1/3" v-show="currentSlide === 2" key="slide2">
+                    <div class="flex flex-col lg:flex-row gap-8 container !mx-auto !px-4 !py-8">
+                        <div class="w-full lg:w-1/4">
+                            <FiltersPanel 
+                            v-model:modelValue="selectedFilters"
+                            :available-cuisines="availableCuisines"
+                            :available-difficulties="availableDifficulties"
+                            :available-time="availableTime"
+                            :available-type-of-meal="availableTypeOfMeal"
+                            :available-type-of-dish="availableTypeOfDish"
+                            @reset="resetFilters"
+                            />
+                        </div>
+                        <div class="w-full lg:w-3/4" >
+                            <SearchBar v-model="searchTerm"/>
+                            <List v-bind:dishes="filteredDishes" @openDishe="openDishe" @resetFilters="resetFilters"></List>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide w-1/3" v-show="currentSlide === 3" key="slide3">
+                    <div class="flex flex-col lg:flex-row gap-8 container !mx-auto !px-4 !py-8 text-black">
+                        o
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="w-full lg:w-3/4">
-
-            <SearchBar v-model="searchTerm"/>
-
-            <List v-bind:dishes="filteredDishes" @resetFilters="resetFilters"></List>
-
-        </div>
-        
     </body>
+
     <footer class="py-8 text-center text-gray-500">
         © 2025 Коллекция рецептов. Все права защищены.
     </footer>
 </template>
 
 <style scoped>
-.controls #input1:checked ~ .perecluch .text1, 
-#input2:checked ~ .perecluch .text2, #input3:checked ~ .perecluch .text3{
-    display: flex;
-    justify-content: space-around;
+
+@media (max-width: 768px) {
+  .slide {
+    width: 100% !important;
+  }
 }
-.controls #input1:checked ~ #label1,
-#input2:checked ~ #label2, #input3:checked ~ #label3{
-    color: #06D6A0;
-    text-decoration-color: #06D6A0;
-}
-.controls .active{
+.active{
     color: #06D6A0;
     text-decoration-color: #06D6A0;
 }
 
-body.dialog-open {
+body .dialog-open {
   overflow: hidden;
 }
 

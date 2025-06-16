@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-  <div class="dishe-card bg-white rounded-xl shadow-md overflow-hidden">
+  <div class="dishe-card bg-white rounded-xl shadow-md overflow-hidden" @click="$emit('openDishe',dishe.id)">
     <div class="h-65 overflow-hidden">
       <img v-if="dishe.img" class="pointer-events-none" :src="dishe.img" alt="">
       <div v-else class="w-full h-full bg-gray-200  rounded-xl flex items-center justify-center text-gray-500">
