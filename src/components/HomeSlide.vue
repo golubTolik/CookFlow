@@ -60,9 +60,10 @@ export default {
 
 <template>
   <div>
+    <!-- https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80 -->
     <!-- Герой-баннер -->
     <section class="font-[Comfortaa] bg-cover bg-center py-20 md:py-32" 
-             style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')">
+             style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../components/icons/fon.jpg')">
       <div class="container mx-auto px-4 !text-center text-white">
         <h1 class="text-4xl md:text-6xl !font-bold !mb-4">Коллекция рецептов</h1>
         <p class="text-xl md:text-2xl !mb-8 max-w-2xl !mx-auto">Тысячи проверенных рецептов на каждый день для вашей кухни</p>
@@ -169,7 +170,7 @@ export default {
           <div class="bg-white p-6 rounded-xl shadow-md text-center">
             <div class="text-4xl !mb-4">❤️</div>
             <h3 class="text-xl font-bold !mb-2">Для всех вкусов</h3>
-            <p class="text-gray-600">Вегетарианские, диетические, национальные кухни и многое другое</p>
+            <p class="text-gray-600">Для каждого образа жизни и кулинарных пристрастий</p>
           </div>
         </div>
       </div>
