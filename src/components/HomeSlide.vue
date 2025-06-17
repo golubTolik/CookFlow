@@ -1,4 +1,6 @@
 <script>
+import heroImage from '@/components/icons/fon.jpg';
+
 export default {
   props: {
     dishes: {
@@ -18,6 +20,11 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+        heroImage: heroImage
+    }
+  },
   computed: {
     popularDishes() {
       return [...this.dishes]
@@ -28,14 +35,20 @@ export default {
       return [...this.dishes]
         .sort((a, b) => b.id - a.id)
         .slice(0, 4);
-    }
+    },
+    heroStyle() {
+        return {
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${this.heroImage})`
+        };
+    },
   },
+  
   methods: {
     getCategoryIcon(category) {
       const icons = {
         "завтрак": "🥞",
         "обед": "🍲",
-        "ужин": "🍛",
+        "ужин": "🍛", 
         "перекус": "🥪",
         "первое блюдо": "🍜",
         "второе блюдо": "🍗",
@@ -60,10 +73,8 @@ export default {
 
 <template>
   <div>
-    <!-- https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80 -->
     <!-- Герой-баннер -->
-    <section class="font-[Comfortaa] bg-cover bg-center py-20 md:py-32" 
-             style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../components/icons/fon.jpg')">
+    <section class="font-[Comfortaa] bg-cover bg-center py-20 md:py-32" :style="heroStyle">
       <div class="container mx-auto px-4 !text-center text-white">
         <h1 class="text-4xl md:text-6xl !font-bold !mb-4">Коллекция рецептов</h1>
         <p class="text-xl md:text-2xl !mb-8 max-w-2xl !mx-auto">Тысячи проверенных рецептов на каждый день для вашей кухни</p>
@@ -105,9 +116,12 @@ export default {
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <div v-for="dish in popularDishes" :key="dish.id" 
-               class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+               class="dishe-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
                @click="openDishe(dish.id)">
-            <img :src="dish.img" :alt="dish.name" class="w-full h-48 object-cover">
+            <img v-if="dish.img" class="w-full h-48 object-cover pointer-events-none" :src="dish.img" alt="">
+            <div v-else class="w-full h-48 bg-gray-200  rounded-xl flex items-center justify-center text-gray-500">
+                <img  class="w-[32px] text-4xl" src="../components/icons/food.svg" alt="">
+            </div>
             <div class="p-4">
               <h3 class="font-bold text-lg !mb-1">{{ dish.name }}</h3>
               <div class="flex items-center text-gray-600 text-sm !mb-1">
@@ -136,9 +150,12 @@ export default {
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <div v-for="dish in newDishes" :key="dish.id" 
-               class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+               class="dishe-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
                @click="openDishe(dish.id)">
-            <img :src="dish.img" :alt="dish.name" class="w-full h-48 object-cover">
+            <img v-if="dish.img" class="w-full h-48 object-cover pointer-events-none" :src="dish.img" alt="">
+            <div v-else class="w-full h-48 bg-gray-200  rounded-xl flex items-center justify-center text-gray-500">
+                <img  class="w-[32px] text-4xl" src="../components/icons/food.svg" alt="">
+            </div>
             <div class="p-4">
               <h3 class="font-bold text-lg !mb-1">{{ dish.name }}</h3>
               <div class="flex items-center text-gray-600 text-sm !mb-1">
@@ -190,5 +207,10 @@ export default {
 </template>
 
 <style scoped>
-
+.dishe-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.dishe-card:hover {
+  transform: translateY(-5px);
+}
 </style>
