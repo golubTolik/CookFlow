@@ -6,6 +6,7 @@ import Dialog from './components/UIcomponents/Dialog.vue';
 import Login from './components/Login.vue';
 import FiltersPanel from './components/FiltersPanel.vue';
 import Header from './components/Header.vue';
+import HomeSlide from './components/HomeSlide.vue';
 
 export default {
     components:{
@@ -15,7 +16,8 @@ export default {
         Dialog,
         Login,
         FiltersPanel,
-        Header
+        Header,
+        HomeSlide
     },
     data() {
         return{
@@ -34,6 +36,9 @@ export default {
                     cookingTime: 40,
                     typeOfMeal: ["обед", "ужин"],
                     typeOfDish: "второе блюдо",
+                    like: 0,
+                    favourites: 0,
+                    comment: [],
                 },
                 {
                     id: 2,
@@ -45,6 +50,9 @@ export default {
                     cookingTime: 90,
                     typeOfMeal: ["обед", "ужин"],
                     typeOfDish: "первое блюдо",
+                    like: 0,
+                    favourites: 0,
+                    comment: [],
                 },
                 {
                     id: 3,
@@ -56,6 +64,9 @@ export default {
                     cookingTime: 25,
                     typeOfMeal: ["обед", "ужин"],
                     typeOfDish: "первое блюдо",
+                    like: 0,
+                    favourites: 0,
+                    comment: [],
                 },
                 {
                     id: 4,
@@ -67,6 +78,9 @@ export default {
                     cookingTime: 120,
                     typeOfMeal: ["ужин"],
                     typeOfDish: "второе блюдо",
+                    like: 0,
+                    favourites: 0,
+                    comment: [],
                 },
                 {
                     id: 5,
@@ -78,6 +92,9 @@ export default {
                     cookingTime: 20,
                     typeOfMeal: ["перекус"],
                     typeOfDish: "салат",
+                    like: 0,
+                    favourites: 0,
+                    comment: [],
                 },
                 {
                     id: 6,
@@ -89,6 +106,9 @@ export default {
                     cookingTime: 60,
                     typeOfMeal: ["обед"],
                     typeOfDish: "гарнир",
+                    like: 0,
+                    favourites: 0,
+                    comment: [],
                 },
                 {
                     id: 7,
@@ -100,6 +120,9 @@ export default {
                     cookingTime: 45,
                     typeOfMeal: ["обед"],
                     typeOfDish: "первое блюдо",
+                    like: 0,
+                    favourites: 0,
+                    comment: [],
                 },
                 {
                     id: 8,
@@ -111,6 +134,9 @@ export default {
                     cookingTime: 30,
                     typeOfMeal: ["перекус"],
                     typeOfDish: "салат",
+                    like: 0,
+                    favourites: 0,
+                    comment: [],
                 },
                 {
                     id: 9,
@@ -122,10 +148,13 @@ export default {
                     cookingTime: 50,
                     typeOfMeal: ["ужин"],
                     typeOfDish: "второе блюдо",
+                    like: 0,
+                    favourites: 0,
+                    comment: [],
                 },
                 {
                     id: 10,
-                    name: "Яйцо пашот в микроволновке",
+                    name: "Яйцо пашот",
                     img: "./src/components/icons/pashot.jpg",
                     description: "Суть яйца пашот кроется в его названии. В переводе с французского, это 'ошпаренный кипятком'.",
                     cuisine: "Французская",
@@ -133,6 +162,14 @@ export default {
                     cookingTime: 3,
                     typeOfMeal: ["завтрак"],
                     typeOfDish: "закуска",
+                    like: 0,
+                    favourites: 0,
+                    comment: [],
+                    // {
+                    //     user: '',
+                    //     text: '',
+                    //     date: '',
+                    // }
                 }
             ],
             selectedFilters: {
@@ -170,6 +207,10 @@ export default {
         openDishe(id){
             console.log(this.dishes[id-1])
         },
+        handleCategorySelected(category) {
+            this.resetFilters();
+            this.selectedFilters.typeOfDish = [category];
+        }
     },
     computed: {
         sliderPosition() {
@@ -237,9 +278,13 @@ export default {
             <div class="flex w-[300%]"
                  :style="{ transform: sliderPosition }">
                 <div class="slide w-1/3" v-show="currentSlide === 1" key="slide1">
-                   <div class="flex flex-col lg:flex-row gap-8 container !mx-auto !px-4 !py-8 text-gray-800">
-                        h
-                    </div>
+                   <HomeSlide 
+                        :dishes="dishes"
+                        :availableTypeOfDish="availableTypeOfDish"
+                        :goToSlide="goToSlide"
+                        :openDishe="openDishe"
+                        @category-selected="handleCategorySelected"
+                    />
                 </div>
                 <div class="slide w-1/3" v-show="currentSlide === 2" key="slide2">
                     <div class="flex flex-col lg:flex-row gap-8 container !mx-auto !px-4 !py-8">
@@ -256,7 +301,7 @@ export default {
                         </div>
                         <div class="w-full lg:w-3/4" >
                             <SearchBar v-model="searchTerm"/>
-                            <List v-bind:dishes="filteredDishes" @openDishe="openDishe" @resetFilters="resetFilters"></List>
+                            <List v-bind:dishes="filteredDishes" :openDishe="openDishe"  @resetFilters="resetFilters"></List>
                         </div>
                     </div>
                 </div>

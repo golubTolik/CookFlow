@@ -21,7 +21,7 @@ export default {
     </div>
     <div class="py-3 px-5">
         <div class="flex justify-between">
-            <h3 class="text-xl !font-bold text-gray-800">{{dishe.name}}</h3>
+            <h3 class="text-xl font-bold text-gray-800">{{dishe.name}}</h3>
             <div class="flex items-center ">
               <span class="text-xs px-2 py-1 rounded-full capitalize"
               :class="{
@@ -34,6 +34,20 @@ export default {
             </div>
         </div>
         <p class="text-gray-600 mb-4">{{ dishe.description }}</p>
+        <div class="flex  text-gray-400">
+          <div class="flex items-center !mr-2 bg-gray-200 px-2 rounded-full">
+            <i class="fa-regular fa-heart"></i>
+            <p class="!ml-1">{{ dishe.like }}</p>
+          </div>
+          <div class="flex items-center !mr-2 bg-gray-200 px-2 rounded-full">
+            <i :class="['fa-solid', 'fa-bookmark', 'bookmark-icon', {'bookmark-active': ''}]"></i>
+            <p class="!ml-1">{{ dishe.favourites }}</p>
+          </div>
+          <div class="flex items-center !mr-2 bg-gray-200 px-2 rounded-full">
+            <i class="fa-regular fa-comment" ></i>
+            <p class="!ml-1">{{ dishe.comment.length }}</p>
+          </div>
+        </div>
       </div>
   </div>
 </template>

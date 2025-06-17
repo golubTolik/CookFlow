@@ -8,7 +8,11 @@ export default {
     dishes: {
       type: Array,
       required: true
-    }
+    },
+    openDishe: {
+      type: Function,
+      required: true
+    },
   }
 }
 </script>
@@ -19,7 +23,7 @@ export default {
         v-for="dishe in dishes"
         :key="dishe.id"
         :dishe="dishe"
-        @openDishe="$emit('openDishe',dishe.id)"
+        @click="openDishe(dishe.id)"
     />
     
   </div>
