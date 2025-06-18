@@ -12,7 +12,7 @@ export default {
 <template>
   <div class="dishe-card bg-white rounded-xl shadow-md overflow-hidden" @click="$emit('openDishe',dishe.id)">
     <div class="h-65 overflow-hidden">
-      <span class="absolute rounded-br-lg rounded-tl-xl text-sm text-gray-800 px-2 py-1 bg-[#06D6A0]">Рецепт</span>
+      <!-- <span class="absolute rounded-br-lg rounded-tl-xl text-sm text-gray-800 px-2 py-1 bg-[#06D6A0]">Рецепт</span> -->
       <img v-if="dishe.img" class="pointer-events-none" :src="dishe.img" alt="">
       <div v-else class="w-full h-full bg-gray-200  rounded-xl flex items-center justify-center text-gray-500">
         <img  class="w-[32px] text-4xl" src="../components/icons/food.svg" alt="">
@@ -34,15 +34,15 @@ export default {
         </div>
         <p class="text-gray-600 mb-4">{{ dishe.description }}</p>
         <div class="flex  text-gray-400">
-          <div class="flex items-center !mr-2 bg-gray-200 px-2 rounded-full">
+          <div class="flex items-center !mr-2 bg-gray-100 px-2 rounded-full">
             <i class="fa-regular fa-heart"></i>
             <p class="!ml-1">{{ dishe.like }}</p>
           </div>
-          <div class="flex items-center !mr-2 bg-gray-200 px-2 rounded-full">
+          <div class="flex items-center !mr-2 bg-gray-100 px-2 rounded-full">
             <i :class="['fa-solid', 'fa-bookmark', 'bookmark-icon', {'bookmark-active': ''}]"></i>
             <p class="!ml-1">{{ dishe.favourites }}</p>
           </div>
-          <div class="flex items-center !mr-2 bg-gray-200 px-2 rounded-full">
+          <div class="flex items-center !mr-2 bg-gray-100 px-2 rounded-full">
             <i class="fa-regular fa-comment" ></i>
             <p class="!ml-1">{{ dishe.comment.length }}</p>
           </div>

@@ -118,6 +118,7 @@ export default {
           <div v-for="dish in popularDishes" :key="dish.id" 
                class="dishe-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
                @click="openDishe(dish.id)">
+            <!-- <span class="absolute rounded-br-lg rounded-tl-xl text-sm text-gray-800 px-2 py-1 bg-[#06D6A0]">Рецепт</span> -->
             <img v-if="dish.img" class="w-full h-48 object-cover pointer-events-none" :src="dish.img" alt="">
             <div v-else class="w-full h-48 bg-gray-200  rounded-xl flex items-center justify-center text-gray-500">
                 <img  class="w-[32px] text-4xl" src="../components/icons/food.svg" alt="">
@@ -152,6 +153,7 @@ export default {
           <div v-for="dish in newDishes" :key="dish.id" 
                class="dishe-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
                @click="openDishe(dish.id)">
+            <!-- <span class="absolute rounded-br-lg rounded-tl-xl text-sm text-gray-800 px-2 py-1 bg-[#06D6A0]">Рецепт</span> -->
             <img v-if="dish.img" class="w-full h-48 object-cover pointer-events-none" :src="dish.img" alt="">
             <div v-else class="w-full h-48 bg-gray-200  rounded-xl flex items-center justify-center text-gray-500">
                 <img  class="w-[32px] text-4xl" src="../components/icons/food.svg" alt="">

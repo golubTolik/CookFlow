@@ -7,6 +7,7 @@ import Login from './components/Login.vue';
 import FiltersPanel from './components/FiltersPanel.vue';
 import Header from './components/Header.vue';
 import HomeSlide from './components/HomeSlide.vue';
+import ArticlesSlide from './components/ArticlesSlide.vue';
 
 import hachImg from '@/components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg'
 import borshImg from '@/components/icons/borsh.jpg'
@@ -32,6 +33,7 @@ export default {
         FiltersPanel,
         Header,
         HomeSlide,
+        ArticlesSlide,
         simplebar
     },
     data() {
@@ -222,6 +224,12 @@ export default {
         openDishe(id){
             console.log(this.dishes[id-1])
         },
+        openArticle(articleId) {
+    // Здесь реализуйте логику открытия статьи
+    console.log("Opening article:", articleId);
+    // Например: переход на отдельную страницу статьи
+    // или открытие модального окна с контентом
+  },
         handleCategorySelected(category) {
             this.resetFilters();
             this.selectedFilters.typeOfDish = [category];
@@ -321,8 +329,11 @@ export default {
                     </div>
                 </div>
                 <div class="slide w-1/3" v-show="currentSlide === 3" key="slide3">
-                    <div class="flex flex-col lg:flex-row gap-8 container !mx-auto !px-4 !py-8 text-gray-800">
-                        o
+                    <div class="container !mx-auto !px-4 !py-8 text-gray-800">
+                        <ArticlesSlide 
+                            :goToSlide="goToSlide"
+                            :openArticle="openArticle"
+                        />
                     </div>
                 </div>
             </div>
