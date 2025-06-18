@@ -17,7 +17,8 @@ export default defineConfig({
   base: '/CookFlow/',
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@img': fileURLToPath(new URL('./src/components/icons', import.meta.url))
     },
   },
 })
