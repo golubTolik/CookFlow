@@ -1,10 +1,13 @@
 <script>
+import simplebar from 'simplebar-vue';
+import 'simplebar-vue/dist/simplebar.min.css';
 
 export default {
   props: {
     title: String,
     options: Array,
     modelValue: Array, // Используем v-model для двухстороннего связывания
+    simplebar
   },
   data() {
     return {
@@ -46,7 +49,7 @@ export default {
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
       </svg>
     </div>
-    <div v-show="isOpen" class="space-y-2 mt-3 max-h-60 overflow-y-auto">
+    <div v-show="isOpen" class="space-y-2 mt-3 max-h-60 overflow-y-auto" data-simplebar>
       <div 
         v-for="option in options.sort((a,b)=> a-b)" 
         :key="option"
@@ -84,12 +87,9 @@ export default {
   /* scrollbar-width: thin;
   scrollbar-color: #c5c5c5 #f1f1f1;
 } */
-
 /* Для WebKit (Chrome, Safari, Edge) */
 .max-h-60::-webkit-scrollbar {
   width: 6px;
-  scrollbar-width: thin;
-  scrollbar-color: #c5c5c5 #f1f1f1;
 }
 .max-h-60::-webkit-scrollbar-track {
   background: #f1f1f1;

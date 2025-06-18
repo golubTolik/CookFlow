@@ -19,6 +19,9 @@ import olivieImg from '@/components/icons/olivie.jpg'
 import kalifoniaImg from '@/components/icons/kalifonia.jpg'
 import pashotImg from '@/components/icons/pashot.jpg'
 
+import simplebar from 'simplebar-vue';
+import 'simplebar-vue/dist/simplebar.min.css';
+
 export default {
     components:{
         List,
@@ -28,7 +31,8 @@ export default {
         Login,
         FiltersPanel,
         Header,
-        HomeSlide
+        HomeSlide,
+        simplebar
     },
     data() {
         return{
