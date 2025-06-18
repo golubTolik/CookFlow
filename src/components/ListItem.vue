@@ -16,7 +16,6 @@ export default {
       <img v-if="dishe.img" class="pointer-events-none" :src="dishe.img" alt="">
       <div v-else class="w-full h-full bg-gray-200  rounded-xl flex items-center justify-center text-gray-500">
         <img  class="w-[32px] text-4xl" src="../components/icons/food.svg" alt="">
-        
       </div>
     </div>
     <div class="py-3 px-5">
