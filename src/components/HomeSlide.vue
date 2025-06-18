@@ -78,7 +78,7 @@ export default {
       <div class="container mx-auto px-4 !text-center text-white">
         <h1 class="text-4xl md:text-6xl !font-bold !mb-4">Коллекция рецептов</h1>
         <p class="text-xl md:text-2xl !mb-8 max-w-2xl !mx-auto">Тысячи проверенных рецептов на каждый день для вашей кухни</p>
-        <button @click="goToSlide(2)" class="bg-[#06D6A0] hover:bg-green-500 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+        <button @click="goToSlide(2)" class="bg-[#06D6A0] cursor-pointer hover:bg-[#5faf9a] text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
           Найти рецепт
         </button>
       </div>
@@ -198,7 +198,7 @@ export default {
       <div class="container !mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold !mb-4">Начните готовить прямо сейчас!</h2>
         <p class="text-xl !mb-8 max-w-2xl !mx-auto">Присоединяйтесь к сообществу любителей кулинарии</p>
-        <button @click="goToSlide(2)" class="bg-white text-[#06D6A0] hover:bg-gray-100 font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+        <button @click="goToSlide(2)" class="bg-white cursor-pointer text-[#06D6A0] hover:bg-gray-200 font-bold py-3 px-8 rounded-full text-lg transition duration-300">
           Исследовать коллекцию
         </button>
       </div>
