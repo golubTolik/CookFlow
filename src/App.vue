@@ -8,6 +8,8 @@ import FiltersPanel from './components/FiltersPanel.vue';
 import Header from './components/Header.vue';
 import HomeSlide from './components/HomeSlide.vue';
 
+import hachImg from '@/components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg'
+
 export default {
     components:{
         List,
@@ -29,7 +31,7 @@ export default {
                 {
                     id: 1,
                     name: "Хачапури по-аджарски",
-                    img: '../components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg',
+                    img: hachImg,
                     description: "Традиционное грузинское блюдо с яйцом и сыром в форме лодочки.",
                     cuisine: "Грузинская",
                     difficulty: "новичок",
