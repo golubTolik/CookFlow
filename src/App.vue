@@ -9,6 +9,15 @@ import Header from './components/Header.vue';
 import HomeSlide from './components/HomeSlide.vue';
 
 import hachImg from '@/components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg'
+import borshImg from '@/components/icons/borsh.jpg'
+import macarraoImg from '@/components/icons/macarrao-com-presunto.jpeg'
+import plovImg from '@/components/icons/plov.jpg'
+import cezarImg from '@/components/icons/cezar.jpg'
+import rattatyiImg from '@/components/icons/rattatyi.jpg'
+import tomYmImg from '@/components/icons/tomYm.png'
+import olivieImg from '@/components/icons/olivie.jpg'
+import kalifoniaImg from '@/components/icons/kalifonia.jpg'
+import pashotImg from '@/components/icons/pashot.jpg'
 
 export default {
     components:{
@@ -45,7 +54,7 @@ export default {
                 {
                     id: 2,
                     name: "Борщ",
-                    img: "../components/icons/borsh.jpg",
+                    img: borshImg,
                     description: "Классический украинский суп со свеклой, капустой и сметаной.",
                     cuisine: "Русская",
                     difficulty: "любитель",
@@ -59,7 +68,7 @@ export default {
                 {
                     id: 3,
                     name: "Паста Карбонара",
-                    img: "../components/icons/macarrao-com-presunto.jpeg",
+                    img: macarraoImg,
                     description: "Итальянская паста с соусом из яиц, сыра пармезан и панчетты.",
                     cuisine: "Средиземноморская",
                     difficulty: "новичок",
@@ -73,7 +82,7 @@ export default {
                 {
                     id: 4,
                     name: "Плов",
-                    img: "../components/icons/plov.jpg",
+                    img: plovImg,
                     description: "Восточное блюдо из риса с бараниной, морковью и специями.",
                     cuisine: "Узбекская",
                     difficulty: "эксперт",
@@ -87,7 +96,7 @@ export default {
                 {
                     id: 5,
                     name: "Салат Цезарь",
-                    img: "../components/icons/cezar.jpg",
+                    img: cezarImg,
                     description: "Классический салат с курицей, листьями салата и соусом Цезарь.",
                     cuisine: "Американская",
                     difficulty: "новичок",
@@ -101,7 +110,7 @@ export default {
                 {
                     id: 6,
                     name: "Рататуй",
-                    img: "../components/icons/rattatyi.jpg",
+                    img: rattatyiImg,
                     description: "Французское овощное рагу из баклажанов, кабачков и перцев.",
                     cuisine: "Французская",
                     difficulty: "любитель",
@@ -115,7 +124,7 @@ export default {
                 {
                     id: 7,
                     name: "Том Ям",
-                    img: "../components/icons/tomYm.png",
+                    img: tomYmImg,
                     description: "Острый тайский суп с креветками, грибами и кокосовым молоком.",
                     cuisine: "Тайская",
                     difficulty: "эксперт",
@@ -129,7 +138,7 @@ export default {
                 {
                     id: 8,
                     name: "Оливье",
-                    img: "../components/icons/olivie.jpg",
+                    img: olivieImg,
                     description: "Традиционный русский салат с колбасой, картофелем и майонезом.",
                     cuisine: "Русская",
                     difficulty: "новичок",
@@ -143,7 +152,7 @@ export default {
                 {
                     id: 9,
                     name: "Суши Калифорния",
-                    img: "../components/icons/kalifonia.jpg",
+                    img: kalifoniaImg,
                     description: "Роллы с крабом, авокадо и огурцом, обернутые икрой тобико.",
                     cuisine: "Японская",
                     difficulty: "любитель",
@@ -157,7 +166,7 @@ export default {
                 {
                     id: 10,
                     name: "Яйцо пашот",
-                    img: "../components/icons/pashot.jpg",
+                    img: pashotImg,
                     description: "Суть яйца пашот кроется в его названии. В переводе с французского, это 'ошпаренный кипятком'.",
                     cuisine: "Французская",
                     difficulty: "новичок",
