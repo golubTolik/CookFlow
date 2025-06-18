@@ -79,6 +79,15 @@ export default {
 }
 
 /* Стили для скролла */
+.max-h-60 {
+  scrollbar-width: thin; /* "auto", "thin" или "none" */
+  scrollbar-color: #c5c5c5 #f1f1f1; /* ползунок и трек */
+}
+
+/* Для hover-эффекта (только через JavaScript или в будущем с помощью :hover) */
+.max-h-60:hover {
+  scrollbar-color: #a8a8a8 #f1f1f1; 
+}
 .max-h-60::-webkit-scrollbar {
   width: 6px;
 }
