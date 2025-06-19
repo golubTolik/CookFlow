@@ -1,13 +1,13 @@
 <script >
 import List from './components/List.vue';
-import FilterSection from './components/FilterSection.vue';
-import SearchBar from './components/SearchBar.vue';
+import FilterSection from './components/UIcomponents/FilterSection.vue';
+import SearchBar from './components/UIcomponents/SearchBar.vue';
 import Dialog from './components/UIcomponents/Dialog.vue';
-import Login from './components/Login.vue';
-import FiltersPanel from './components/FiltersPanel.vue';
+import Login from './components/UIcomponents/Login.vue';
+import FiltersPanel from './components/UIcomponents/FiltersPanel.vue';
 import Header from './components/Header.vue';
-import HomeSlide from './components/HomeSlide.vue';
-import ArticlesSlide from './components/ArticlesSlide.vue';
+import HomeSlide from './components/Pages/HomeSlide.vue';
+import ArticlesSlide from './components/Pages/ArticlesSlide.vue';
 
 import hachImg from '@/components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg'
 import borshImg from '@/components/icons/borsh.jpg'
