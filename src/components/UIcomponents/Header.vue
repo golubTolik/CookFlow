@@ -1,7 +1,7 @@
 <script>
-import Dialog from './UIcomponents/Dialog.vue';
+import Dialog from './Dialog.vue';
 import Login from './Login.vue';
-import logo from '../components/icons/logo4.png'; // Импортируем логотип
+import logo from '@/components/icons/logo4.png'; // Импортируем логотип
 
 export default {
   name: 'AppHeader',

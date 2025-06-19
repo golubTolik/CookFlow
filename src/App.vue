@@ -1,11 +1,11 @@
 <script >
-import List from './components/List.vue';
+import List from './components/UIcomponents/List.vue';
 import FilterSection from './components/UIcomponents/FilterSection.vue';
 import SearchBar from './components/UIcomponents/SearchBar.vue';
 import Dialog from './components/UIcomponents/Dialog.vue';
 import Login from './components/UIcomponents/Login.vue';
 import FiltersPanel from './components/UIcomponents/FiltersPanel.vue';
-import Header from './components/Header.vue';
+import Header from './components/UIcomponents/Header.vue';
 import HomeSlide from './components/Pages/HomeSlide.vue';
 import ArticlesSlide from './components/Pages/ArticlesSlide.vue';
 
