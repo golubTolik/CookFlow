@@ -6,8 +6,8 @@ import Dialog from './components/UIcomponents/Dialog.vue';
 import Login from './components/UIcomponents/Login.vue';
 import FiltersPanel from './components/UIcomponents/FiltersPanel.vue';
 import Header from './components/UIcomponents/Header.vue';
-import HomeSlide from './components/Pages/HomeSlide.vue';
-import ArticlesSlide from './components/Pages/ArticlesSlide.vue';
+import HomeSlide from './components/UIcomponents/HomeSlide.vue';
+import ArticlesSlide from './components/UIcomponents/ArticlesSlide.vue';
 
 import hachImg from '@/components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg'
 import borshImg from '@/components/icons/borsh.jpg'
