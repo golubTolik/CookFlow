@@ -176,7 +176,6 @@ export default {
 </template>
 
 <style scoped>
-/* Ваши стили */
 @media (max-width: 768px) {
   .slide {
     width: 100% !important;
