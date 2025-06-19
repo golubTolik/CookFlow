@@ -1,25 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 // Импортируем компоненты страниц
-import HomePage from '../Pages/HomePage.vue'
-import ArticlesPage from '../Pages/ArticlesPage.vue'
-import DishePage from '../Pages/DishePage.vue'
+import HomeView  from '../Pages/HomeView.vue'
+import RecipesView  from '../Pages/RecipesView.vue'
+import ArticlesView  from '../Pages/ArticlesView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomePage
+    component: HomeView 
   },
   {
-    path: '/dishe',
-    name: 'dishe',
-    component: DishePage
+    path: '/recipes',
+    name: 'recipes',
+    component: RecipesView 
   },
   {
     path: '/articles',
     name: 'articles',
-    component: ArticlesPage
+    component: ArticlesView 
   }
 ]
 

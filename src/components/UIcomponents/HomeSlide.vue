@@ -78,9 +78,11 @@ export default {
       <div class="container mx-auto px-4 !text-center text-white">
         <h1 class="text-4xl md:text-6xl !font-bold !mb-4">Коллекция рецептов</h1>
         <p class="text-xl md:text-2xl !mb-8 max-w-2xl !mx-auto">Тысячи проверенных рецептов на каждый день для вашей кухни</p>
-        <button @click="goToSlide(2)" class="bg-[#06D6A0] cursor-pointer hover:bg-[#5faf9a] text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
-          Найти рецепт
-        </button>
+        <router-link to="/recipes">
+          <button class="bg-[#06D6A0] cursor-pointer hover:bg-[#5faf9a] text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+            Найти рецепт
+          </button>
+        </router-link>
       </div>
     </section>
 
@@ -106,12 +108,14 @@ export default {
       <div class="container !mx-auto px-4 text-gray-800">
         <div class="flex justify-between items-center !mb-8">
           <h2 class="text-3xl font-bold font-[Comfortaa]">Популярные рецепты</h2>
-          <button @click="goToSlide(2)" class="text-[#06D6A0] hover:text-green-500 font-medium flex items-center">
-            Смотреть все
-            <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-            </svg>
-          </button>
+          <router-link to="/recipes">
+            <button @click="goToSlide(2)" class="text-[#06D6A0] hover:text-green-500 font-medium flex items-center">
+              Смотреть все
+              <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+          </router-link>
         </div>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -141,12 +145,14 @@ export default {
       <div class="container !mx-auto px-4 text-gray-800">
         <div class="flex justify-between items-center !mb-8">
           <h2 class="text-3xl font-bold font-[Comfortaa]">Новые рецепты</h2>
-          <button @click="goToSlide(2)" class="text-[#06D6A0] hover:text-green-500 font-medium flex items-center">
-            Смотреть все
-            <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-            </svg>
-          </button>
+          <router-link to="/recipes">
+            <button @click="goToSlide(2)" class="text-[#06D6A0] hover:text-green-500 font-medium flex items-center">
+              Смотреть все
+              <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+          </router-link>
         </div>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -200,9 +206,11 @@ export default {
       <div class="container !mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-bold !mb-4">Начните готовить прямо сейчас!</h2>
         <p class="text-xl !mb-8 max-w-2xl !mx-auto">Присоединяйтесь к сообществу любителей кулинарии</p>
-        <button @click="goToSlide(2)" class="bg-white cursor-pointer text-[#06D6A0] hover:bg-gray-200 font-bold py-3 px-8 rounded-full text-lg transition duration-300">
-          Исследовать коллекцию
-        </button>
+        <router-link to="/recipes">
+          <button @click="goToSlide(2)" class="bg-white cursor-pointer text-[#06D6A0] hover:bg-gray-200 font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+            Исследовать коллекцию
+          </button>
+        </router-link>
       </div>
     </section>
   </div>
