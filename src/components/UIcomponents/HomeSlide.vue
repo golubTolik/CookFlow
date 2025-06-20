@@ -125,7 +125,7 @@ export default {
             <!-- <span class="absolute rounded-br-lg rounded-tl-xl text-sm text-gray-800 px-2 py-1 bg-[#06D6A0]">Рецепт</span> -->
             <img v-if="dish.img" class="w-full h-48 object-cover pointer-events-none" :src="dish.img" alt="">
             <div v-else class="w-full h-48 bg-gray-200  rounded-xl flex items-center justify-center text-gray-500">
-                <img  class="w-[32px] text-4xl" src="../components/icons/food.svg" alt="">
+                <img  class="w-[32px] text-4xl" src="@/components/icons/food.svg" alt="">
             </div>
             <div class="p-4">
               <h3 class="font-bold text-lg !mb-1">{{ dish.name }}</h3>
@@ -162,7 +162,7 @@ export default {
             <!-- <span class="absolute rounded-br-lg rounded-tl-xl text-sm text-gray-800 px-2 py-1 bg-[#06D6A0]">Рецепт</span> -->
             <img v-if="dish.img" class="w-full h-48 object-cover pointer-events-none" :src="dish.img" alt="">
             <div v-else class="w-full h-48 bg-gray-200  rounded-xl flex items-center justify-center text-gray-500">
-                <img  class="w-[32px] text-4xl" src="../components/icons/food.svg" alt="">
+                <img  class="w-[32px] text-4xl" src="@/components/icons/food.svg" alt="">
             </div>
             <div class="p-4">
               <h3 class="font-bold text-lg !mb-1">{{ dish.name }}</h3>
