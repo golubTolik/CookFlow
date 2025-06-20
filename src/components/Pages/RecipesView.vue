@@ -79,6 +79,9 @@ export default {
       };
       this.searchTerm = '';
     },
+    openDishe(id){
+      this.$router.push(`/recipe/${id}`);
+    }
   },
   created() {
     if (this.$route.query.category) {
@@ -103,7 +106,7 @@ export default {
     </div>
     <div class="w-full lg:w-3/4">
       <SearchBar v-model="searchTerm"/>
-      <List :dishes="filteredDishes" @resetFilters="resetFilters"/>
+      <List :dishes="filteredDishes" :openDishe="openDishe" @resetFilters="resetFilters"/>
     </div>
   </div>
 </template>
