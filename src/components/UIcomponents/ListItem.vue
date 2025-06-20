@@ -29,7 +29,7 @@ export default {
                   'bg-red-100 text-red-800': dishe.difficulty === 'эксперт'
                 }"
               >{{dishe.difficulty}}</span>
-              <span class="text-sm text-gray-500 flex !ml-2"><img class="w-[16px] !mr-[5px]" src="../components/icons/clock.svg" alt="">{{ dishe.cookingTime }} мин</span>
+              <span class="text-sm text-gray-500 flex !ml-2"><img class="w-[16px] !mr-[5px]" src="@/components/icons/clock.svg" alt="">{{ dishe.cookingTime }} мин</span>
             </div>
         </div>
         <p class="text-gray-600 mb-4">{{ dishe.description }}</p>

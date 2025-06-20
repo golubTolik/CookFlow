@@ -130,7 +130,7 @@ export default {
             <div class="p-4">
               <h3 class="font-bold text-lg !mb-1">{{ dish.name }}</h3>
               <div class="flex items-center text-gray-600 text-sm !mb-1">
-                <span class="!mr-3 flex"><img class="w-[16px] !mr-[5px]" src="../components/icons/clock.svg" alt="">{{ dish.cookingTime }} мин</span>
+                <span class="!mr-3 flex"><img class="w-[16px] !mr-[5px]" src="@/components/icons/clock.svg" alt="">{{ dish.cookingTime }} мин</span>
                 <span>{{ dish.cuisine }}</span>
               </div>
               <p class="text-gray-700 line-clamp-2">{{ dish.description }}</p>
@@ -167,7 +167,7 @@ export default {
             <div class="p-4">
               <h3 class="font-bold text-lg !mb-1">{{ dish.name }}</h3>
               <div class="flex items-center text-gray-600 text-sm !mb-1">
-                <span class="!mr-3 flex"><img class="w-[16px] !mr-[5px]" src="../components/icons/clock.svg" alt="">{{ dish.cookingTime }} мин</span>
+                <span class="!mr-3 flex"><img class="w-[16px] !mr-[5px]" src="@/components/icons/clock.svg" alt="">{{ dish.cookingTime }} мин</span>
                 <span>{{ dish.cuisine }}</span>
               </div>
               <p class="text-gray-700 line-clamp-2">{{ dish.description }}</p>
