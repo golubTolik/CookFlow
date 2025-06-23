@@ -82,6 +82,7 @@ export default {
               <span class="text-gray-800 !font-medium">{{ ingredient.quantity }}</span>
             </li>
           </ul>
+          <h2 class="text-xl !font-semibold !mt-4">Колличество порций: {{ dish.numberOfServings }}</h2>
         </div>
 
         <div class="bg-white p-6 rounded-lg shadow-md !mb-6">
