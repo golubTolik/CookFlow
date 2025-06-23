@@ -11,6 +11,8 @@ import olivieImg from '@/components/icons/olivie.jpg'
 import kalifoniaImg from '@/components/icons/kalifonia.jpg'
 import pashotImg from '@/components/icons/pashot.jpg'
 
+import autorSanya from '@/components/icons/autor.jpg'
+
 export default {
   components: { Header },
   data() {
@@ -146,10 +148,11 @@ export default {
                 id: 10,
                 name: "Яйцо пашот",
                 img: pashotImg,
-                description: "Суть яйца пашот кроется в его названии. В переводе с французского, это 'ошпаренный кипятком'.",
+                description: "«Кремообразный желток, окутанный нежными хлопьями белка»",
+                descriptionFull: "«Кремообразный желток, окутанный нежными хлопьями белка» — такое описание вы встретите в Википедии, если решите почитать про яйцо пашот. Блюдо довольно простое, но способно сделать ваш завтрак чуточку торжественным. Особенно, если креативно подойти к подаче. В рецепте мы оставили подсказку, которая поможет вам красиво оформить это французское блюдо.",
                 cuisine: "Французская",
                 difficulty: "новичок",
-                cookingTime: 3,
+                cookingTime: 10,
                 typeOfMeal: ["завтрак"],
                 typeOfDish: "закуска",
                 like: 0,
@@ -160,6 +163,50 @@ export default {
                 //     text: '',
                 //     date: '',
                 // }
+                ingredients: [
+                  { name: "Куриное яйцо", quantity: "1 шт." },
+                  { name: "Вода", quantity: "500 мл" },
+                  { name: "Соль", quantity: "по вкусу" },
+                  { name: "Столовый уксус", quantity: "30 мл" },
+                  { name: "Черный перец молотый", quantity: "по вкусу" }
+                ],
+                cookingSteps: [
+                  {
+                    id: 1,
+                    title: "Подготовка",
+                    image: '',
+                    description: "Подготовьте мелкое сито.",
+                  },
+                  {
+                    id: 2,
+                    title: "Приготовление",
+                    steps: [
+                      {
+                        id: 2.1,
+                        title: "Шаг 1",
+                        image: '',
+                        description: "Закипятите воду с уксусом, затем уменьшите огонь."
+                      },
+                      {
+                        id: 2.2,
+                        title: "Шаг 2",
+                        image: '',
+                        description: "Вылейте яйцо на сито, чтобы избавиться от лишней жидкости, сделайте ложкой в воде воронку и аккуратно поместите в нее яйцо. Варите в течение 2 минут.",
+                      },
+                      {
+                        id: 2.3,
+                        title: "Шаг 3",
+                        image: '',
+                        description: "Подавайте, чуть присыпав солью и перцем."
+                      }
+                    ]
+                  }
+                ],
+                author: {
+                  name: "Саня Тушилово",
+                  img: autorSanya,
+                  status: "кулинарный редактор Коллекция-рецептов.рф",
+                }
             }
         ],
     };
