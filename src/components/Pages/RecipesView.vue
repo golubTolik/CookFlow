@@ -101,12 +101,12 @@ export default {
         :available-time="availableTime"
         :available-type-of-meal="availableTypeOfMeal"
         :available-type-of-dish="availableTypeOfDish"
-        @reset="resetFilters"
+        @resetFilters="resetFilters"
       />
     </div>
     <div class="w-full lg:w-3/4">
       <SearchBar v-model="searchTerm"/>
-      <List :dishes="filteredDishes" :openDishe="openDishe" @resetFilters="resetFilters"/>
+      <List class="!mt-3" :dishes="filteredDishes" :openDishe="openDishe" @resetFilters="resetFilters"/>
     </div>
   </div>
 </template>
