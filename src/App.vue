@@ -16,7 +16,15 @@ import autorSanya from '@/components/icons/autor.jpg'
 export default {
   components: { Header },
   data() {
-    return {
+    return {  
+      authors: [
+        {
+          id: 1,
+          name: "Саня Тушилово",
+          img: autorSanya,
+          status: "кулинарный редактор Коллекция-рецептов.рф",
+        }
+      ],
       dishes : [
             {
                 id: 1,
@@ -89,11 +97,7 @@ export default {
                     ]
                   }
                 ],
-                author: {
-                  name: "Саня Тушилово",
-                  img: autorSanya,
-                  status: "кулинарный редактор Коллекция-рецептов.рф",
-                }
+                authorId: 1
             },
             {
                 id: 2,
@@ -243,11 +247,7 @@ export default {
                     ]
                   }
                 ],
-                author: {
-                  name: "Саня Тушилово",
-                  img: autorSanya,
-                  status: "кулинарный редактор Коллекция-рецептов.рф",
-                }
+                authorId: 1
             },
             {
                 id: 3,
@@ -324,11 +324,7 @@ export default {
                     ]
                   }
                 ],
-                author: {
-                  name: "Саня Тушилово",
-                  img: autorSanya,
-                  status: "кулинарный редактор Коллекция-рецептов.рф",
-                }
+                authorId: 1
             },
             {
                 id: 4,
@@ -392,11 +388,7 @@ export default {
                     ]
                   }
                 ],
-                author: {
-                  name: "Саня Тушилово",
-                  img: autorSanya,
-                  status: "кулинарный редактор Коллекция-рецептов.рф",
-                }
+                authorId: 1
             },
             {
                 id: 5,
@@ -471,11 +463,7 @@ export default {
                     ]
                   }
                 ],
-                author: {
-                  name: "Саня Тушилово",
-                  img: autorSanya,
-                  status: "кулинарный редактор Коллекция-рецептов.рф",
-                }
+                authorId: 1
             },
             {
                 id: 6,
@@ -541,11 +529,7 @@ export default {
                     ]
                   }
                 ],
-                author: {
-                  name: "Саня Тушилово",
-                  img: autorSanya,
-                  status: "кулинарный редактор Коллекция-рецептов.рф",
-                }
+                authorId: 1
             },
             {
                 id: 7,
@@ -677,18 +661,14 @@ export default {
                     ]
                   }
                 ],
-                author: {
-                  name: "Саня Тушилово",
-                  img: autorSanya,
-                  status: "кулинарный редактор Коллекция-рецептов.рф",
-                }
+                authorId: 1
             },
             {
                 id: 8,
                 name: "Оливье",
                 img: olivieImg,
                 description: "Традиционный русский салат с колбасой, картофелем и майонезом.",
-                descriptionFull: "",
+                descriptionFull: "Икона праздничного застолья! Тот самый, всеми любимый, без которого не обходится ни один Новый год или важное семейное торжество. Нежная основа из картофеля и моркови, пикантные нотки огурцов, сочность мяса или ветчины, сладость горошка и свежесть укропа – все это в идеальном балансе под облаком аппетитного майонеза. Знакомый вкус детства, гарантия восторга гостей и обязательный атрибут настоящего праздника. Просто, сытно, невероятно вкусно и по-домашнему душевно. Классика, проверенная временем!",
                 cuisine: "Русская",
                 difficulty: "новичок",
                 cookingTime: 30,
@@ -755,11 +735,7 @@ export default {
                     ]
                   }
                 ],
-                author: {
-                  name: "Саня Тушилово",
-                  img: autorSanya,
-                  status: "кулинарный редактор Коллекция-рецептов.рф",
-                }
+                authorId: 1
             },
             {
                 id: 9,
@@ -828,11 +804,7 @@ export default {
                     ]
                   }
                 ],
-                author: {
-                  name: "Саня Тушилово",
-                  img: autorSanya,
-                  status: "кулинарный редактор Коллекция-рецептов.рф",
-                }
+                authorId: 1
             },
             {
                 id: 10,
@@ -893,21 +865,30 @@ export default {
                     ]
                   }
                 ],
-                author: {
-                  name: "Саня Тушилово",
-                  img: autorSanya,
-                  status: "кулинарный редактор Коллекция-рецептов.рф",
-                }
+                authorId: 1
             }
         ],
     };
   },
+  computed: {
+    // Обогащаем рецепты данными авторов
+    dishesWithAuthors() {
+      return this.dishes.map(dish => {
+        const author = this.authors.find(a => a.id === dish.authorId);
+        return {
+          ...dish,
+          author: author ? { ...author } : null
+        };
+      });
+    }
+  }
+
 };
 </script>
 
 <template>
   <Header />
-  <router-view :dishes="dishes" />
+  <router-view :dishes="dishesWithAuthors" />
   <footer class="py-8 text-center text-gray-500">
     © 2025 Коллекция рецептов. Все права защищены.
   </footer>

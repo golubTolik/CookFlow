@@ -26,7 +26,7 @@ export default {
     <!-- Заголовок -->
     <h1 class="text-3xl md:text-4xl font-[Comfortaa] !font-semibold !mb-4">{{ dish.name }}</h1>
     
-    <div class="flex flex-col lg:flex-row gap-8">
+    <div class="flex flex-col lg:flex-row gap-8 !mb-6">
       <!-- Левая колонка (изображение и детали) -->
       <div class="w-full lg:w-1/2">
         <img :src="dish.img" :alt="dish.name" class="w-full h-auto rounded-lg shadow-lg !mb-6">
@@ -69,12 +69,15 @@ export default {
       
       <!-- Правая колонка (описание и ингредиенты) -->
       <div class="w-full lg:w-1/2">
+
+        
+
         <div class="bg-white p-6 rounded-lg shadow-md !mb-6">
           <h2 class="text-xl !font-semibold !mb-4">Описание</h2>
           <p class="text-gray-700">{{ dish.descriptionFull }}</p>
         </div>
         
-        <div class="bg-white p-6 rounded-lg shadow-md !mb-6">
+        <div class="bg-white p-6 rounded-lg shadow-md">
           <h2 class="text-xl !font-semibold !mb-4">Ингредиенты</h2>
           <ul class="space-y-2">
             <li v-for="(ingredient, index) in dish.ingredients" :key="index" class="flex justify-between border-b-1 border-dashed border-gray-400">
@@ -84,34 +87,35 @@ export default {
           </ul>
           <h2 class="text-xl !font-semibold !mt-4">Колличество порций: {{ dish.numberOfServings }}</h2>
         </div>
-
-        <div class="bg-white p-6 rounded-lg shadow-md !mb-6">
-          <h2 class="text-xl !font-semibold !mb-4">Шаги приготовления</h2>
-          <div class="space-y-6">
-            <div v-for="(step, stepIndex) in dish.cookingSteps" :key="stepIndex" class="step">
-              <!-- Шаги с подшагами -->
-              <div v-if="step.steps">
-                <!-- <h3 v-if="step.title" class="!font-semibold text-lg !mb-3">{{ step.title }}</h3> -->
-                <div class="list-decimal list-inside space-y-2 pl-4">
-                  <p v-for="(subStep, subIndex) in step.steps" :key="subIndex" class="!mb-4 flex flex-col">
-                    <div class="flex"><p class="rounded-full px-3 py-1 bg-green-500 text-white !font-semibold !mb-1 uppercase">{{ subStep.title }}</p></div>
-                    <img v-if="subStep.image" :src="subStep.image" alt="" class="w-auto h-auto rounded-lg shadow-lg">
-                    {{ subStep.description }}
-                  </p>
-                </div>
-              </div>
-              
-              <!-- Простые шаги без вложенности(подготовка) -->
-              <div v-else-if="step.description" class="list-decimal list-inside space-y-2 pl-4">
-                <div class="flex"><p class="rounded-full px-3 py-1 bg-green-500 text-white !font-semibold !mb-1 uppercase">{{ step.title }}</p></div>
-                <img v-if="step.image" :src="step.image" alt="" class="w-auto h-auto rounded-lg shadow-lg">
-                <p class="!mb-4">{{ step.description }}</p>
-              </div>
+      </div>
+      
+    </div>
+    <div class="flex !justify-center !mb-6 ">
+    <div class="bg-white p-6 rounded-lg shadow-md lg:w-1/2">
+      <h2 class="text-xl !font-semibold !mb-4">Шаги приготовления</h2>
+      <div class="space-y-6">
+        <div v-for="(step, stepIndex) in dish.cookingSteps" :key="stepIndex" class="step">
+          <!-- Шаги с подшагами -->
+          <div v-if="step.steps">
+            <!-- <h3 v-if="step.title" class="!font-semibold text-lg !mb-3">{{ step.title }}</h3> -->
+            <div class="list-decimal list-inside space-y-2 pl-4">
+              <p v-for="(subStep, subIndex) in step.steps" :key="subIndex" class="!mb-4 flex flex-col">
+                <div class="flex"><p class="rounded-full px-3 py-1 bg-green-500 text-white !font-semibold !mb-1 uppercase">{{ subStep.title }}</p></div>
+                <img v-if="subStep.image" :src="subStep.image" alt="" class="w-auto h-auto rounded-lg shadow-lg">
+                {{ subStep.description }}
+              </p>
             </div>
           </div>
+              
+          <!-- Простые шаги без вложенности(подготовка) -->
+          <div v-else-if="step.description" class="list-decimal list-inside space-y-2 pl-4">
+            <div class="flex"><p class="rounded-full px-3 py-1 bg-green-500 text-white !font-semibold !mb-1 uppercase">{{ step.title }}</p></div>
+            <img v-if="step.image" :src="step.image" alt="" class="w-auto h-auto rounded-lg shadow-lg">
+            <p class="!mb-4">{{ step.description }}</p>
+          </div>
         </div>
-
       </div>
+    </div>
     </div>
   </div>
   
