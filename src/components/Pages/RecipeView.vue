@@ -175,7 +175,7 @@ export default {
       
         <!-- Форма добавления комментария -->
         <div class="!mb-8">
-          <textarea v-model="newComment" placeholder="Напишите ваш комментарий..." class="w-full p-4 border rounded-lg focus:ring-2 focus:ring-[#06D6A0] focus:border-transparent !mb-3"></textarea>
+          <textarea v-model="newComment" placeholder="Напишите ваш комментарий..." class="w-full p-4 border-[#06D6A0] border-1 rounded-lg focus:border-[#06D6A0] focus:outline-none focus:bg-[#06d69e4b]  !mb-3"></textarea>
           <button @click="addComment" class="px-6 py-2 bg-[#06D6A0] text-white rounded-lg hover:bg-[#05b38d] transition">
             Отправить комментарий
           </button>
