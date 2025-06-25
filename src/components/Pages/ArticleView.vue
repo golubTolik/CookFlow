@@ -16,7 +16,7 @@ export default {
         { id: 7, icon: "🍳", title: "Завтраки" },
         { id: 8, icon: "🎉", title: "Праздничные блюда" }
       ],
-      article: null,
+    //   article: null,
 
       newComment: '',
       currentUser: 'Анонимный пользователь'
@@ -57,7 +57,7 @@ export default {
 </script>
 
 <template>
-  <div class="bg-gray-50 min-h-screen text-gray-800">
+  <div class="min-h-screen text-gray-800">
     <div class="container !mx-auto px-4 py-8">
       <!-- Кнопка "Назад" -->
       <button 
@@ -154,7 +154,7 @@ export default {
       </div>
 
       <!-- Комментарии -->
-      <div class="flex !justify-center !mt-6">
+    <div v-if="article" class="flex !justify-center !mt-6">
       <div class="bg-white p-6 rounded-lg shadow-md lg:w-1/2" id="comments">
         <h2 class="text-2xl !font-semibold !mb-6">Комментарии ({{ article.comment.length }})</h2>
       
