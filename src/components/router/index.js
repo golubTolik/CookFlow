@@ -5,6 +5,7 @@ import HomeView  from '../Pages/HomeView.vue'
 import RecipesView  from '../Pages/RecipesView.vue'
 import ArticlesView  from '../Pages/ArticlesView.vue'
 import RecipeView from '../Pages/RecipeView.vue'
+import ArticleView from '../Pages/ArticleView.vue'
 
 const routes = [
   {
@@ -25,6 +26,12 @@ const routes = [
   { 
     path: '/recipe/:id', 
     component: RecipeView,
+    props: true
+  },
+  {
+    path: '/article/:id',
+    name: 'article',
+    component: ArticleView,
     props: true
   }
 ]

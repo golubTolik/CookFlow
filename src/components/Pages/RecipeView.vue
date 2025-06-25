@@ -12,8 +12,7 @@ export default {
   },
   computed: {
     dish() {
-      const id = parseInt(this.$route.params.id);
-      return this.dishes.find(d => d.id === id);
+      return this.dishes.find(d => d.id === parseInt(this.$route.params.id));
     }
   },
   methods: {

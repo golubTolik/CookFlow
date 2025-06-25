@@ -1,14 +1,10 @@
 <script>
 export default {
   props: {
-    goToSlide: {
-      type: Function,
+    articles: {
+      type: Array,
       required: true
     },
-    openArticle: {
-      type: Function,
-      default: (id) => console.log("Opening article", id)
-    }
   },
   data() {
     return {
@@ -25,88 +21,6 @@ export default {
         { id: 7, icon: "🍳", title: "Завтраки" },
         { id: 8, icon: "🎉", title: "Праздничные блюда" }
       ],
-      articles: [
-        {
-          id: 1,
-          icon: "🍞",
-          title: "Идеальное тесто: 7 главных правил",
-          excerpt: "Как добиться идеальной текстуры теста для любой выпечки",
-          date: "15 мая 2025",
-          readTime: 8,
-          tags: ["выпечка", "советы", "тесто"],
-          category: 4
-        },
-        {
-          id: 2,
-          icon: "🥩",
-          title: "Стейк как в ресторане: полное руководство",
-          excerpt: "От выбора мяса до правильной прожарки - все этапы приготовления",
-          date: "10 мая 2025",
-          readTime: 12,
-          tags: ["мясо", "техника", "ресторанные секреты"],
-          category: 2
-        },
-        {
-          id: 3,
-          icon: "🧊",
-          title: "Ферментация- тренд или полезная технология?",
-          excerpt: "Как ферментированные продукты улучшают пищеварение",
-          date: "5 мая 2025",
-          readTime: 10,
-          tags: ["здоровье", "технологии", "тренды"],
-          category: 1
-        },
-        {
-          id: 4,
-          icon: "🍣",
-          title: "Японская кухня- больше чем суши",
-          excerpt: "Исследуем разнообразие традиционных японских блюд",
-          date: "28 апреля 2025",
-          readTime: 14,
-          tags: ["азия", "традиции", "морепродукты"],
-          category: 3
-        },
-        {
-          id: 5,
-          icon: "🥗",
-          title: "Сезонные салаты: весеннее меню",
-          excerpt: "Лучшие комбинации сезонных овощей для полезных салатов",
-          date: "20 апреля 2025",
-          readTime: 7,
-          tags: ["весна", "овощи", "здоровое питание"],
-          category: 1
-        },
-        {
-          id: 6,
-          icon: "🍳",
-          title: "10 ошибок начинающего кулинара",
-          excerpt: "Распространенные ошибки и как их избежать",
-          date: "12 апреля 2025",
-          readTime: 9,
-          tags: ["советы", "обучение", "техника"],
-          category: 2
-        },
-        {
-          id: 7,
-          icon: "🍫",
-          title: "Шоколадные десерты без выпечки",
-          excerpt: "Простые рецепты для любителей шоколада",
-          date: "5 апреля 2025",
-          readTime: 6,
-          tags: ["десерты", "шоколад", "без выпечки"],
-          category: 4
-        },
-        {
-          id: 8,
-          icon: "🍛",
-          title: "Индийские специи: гид для начинающих",
-          excerpt: "Как использовать специи в традиционных индийских блюдах",
-          date: "30 марта 2025",
-          readTime: 11,
-          tags: ["специи", "индия", "вегетарианство"],
-          category: 3
-        }
-      ]
     }
   },
   computed: {
@@ -143,7 +57,7 @@ export default {
 </script>
 
 <template>
-  <div class="articles-page bg-gray-50 min-h-screen">
+  <div class="bg-gray-50 min-h-screen">
     <!-- Заголовок страницы -->
     <div class="container !mx-auto px-4 py-8">
       <h1 class="text-3xl md:text-4xl font-bold text-center !mb-12 font-[Comfortaa]">
@@ -159,7 +73,11 @@ export default {
         </button>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 !mb-16" >
         <div v-for="(category, index) in articleCategories" :key="index"
-             class="bg-white rounded-xl shadow-md p-6 text-center cursor-pointer hover:shadow-lg transition-transform hover:-translate-y-1"
+             class="rounded-xl shadow-md p-6 text-center cursor-pointer hover:shadow-lg  hover:-translate-y-1 transition-all duration-300"
+             :class="{
+                'bg-[#06D6A0]': selectedCategory?.id === category.id,
+                'bg-white': selectedCategory?.id !== category.id
+              }"
              @click="selectCategory(category)">
           <div class="text-4xl !mb-3">{{ category.icon }}</div>
           <h3 class="font-bold">{{ category.title }}</h3>
@@ -170,34 +88,38 @@ export default {
       <!-- Список статей -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" v-if="filteredArticles.length > 0">
         <div v-for="article in filteredArticles" :key="article.id"
-             class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all">
+             class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1">
           <!-- Изображение статьи -->
           <div class="h-48 bg-gray-200 flex items-center justify-center">
             <span class="text-5xl">{{ article.icon }}</span>
           </div>
           
           <!-- Контент статьи -->
-          <div class="p-6">
-            <div class="flex items-center text-sm text-gray-500 mb-2">
-              <span>{{ article.date }}</span>
-              <span class="!mx-2">•</span>
-              <span>{{ article.readTime }} мин чтения</span>
+          <div class="p-6 h-auto lg:h-66 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <span>{{ article.date }}</span>
+                <span class="!mx-2">•</span>
+                <span>{{ article.readTime }} мин чтения</span>
+              </div>
+              <h3 class="text-xl font-bold !mb-3">{{ article.title }}</h3>
+              <p class="text-gray-700 !mb-4">{{ article.excerpt }}</p>
             </div>
-            <h3 class="text-xl font-bold !mb-3">{{ article.title }}</h3>
-            <p class="text-gray-700 !mb-4">{{ article.excerpt }}</p>
-            <div class="flex flex-wrap gap-2 !mb-4">
-              <span v-for="(tag, idx) in article.tags" :key="idx"
+            <div class="flex flex-col comtent-end justify-items-end justify-end">
+              <div class="flex flex-wrap gap-2 !mb-4">
+                <span v-for="(tag, idx) in article.tags" :key="idx"
                     class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">
-                {{ tag }}
-              </span>
+                  {{ tag }}
+                </span>
+              </div>
+              <button class="text-[#06D6A0] font-medium flex items-center "
+                    @click="$router.push({ name: 'article', params: { id: article.id } })">
+                Читать статью
+                <svg class="w-4 h-4 !ml-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </button>
             </div>
-            <button class="text-[#06D6A0] font-medium flex items-center "
-                    @click="openArticle(article.id)">
-              Читать статью
-              <svg class="w-4 h-4 !ml-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-              </svg>
-            </button>
           </div>
         </div>
       </div>
@@ -228,12 +150,4 @@ export default {
 </template>
 
 <style scoped>
-.articles-page{
-  background-color: #f9fafb;
-}
-/* Анимация при наведении на категории */
-.category-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-}
 </style>
