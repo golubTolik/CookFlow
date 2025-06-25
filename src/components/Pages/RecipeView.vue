@@ -107,7 +107,7 @@ export default {
         </div>
         <div class="bg-white p-6 rounded-lg shadow-md">
           <div class="flex">
-            <img :src="dish.author.img" alt="" class="w-[46px] h-[46-px] rounded-full !mr-4">
+            <img :src="dish.author.img" alt="" class="!w-[46px] !h-[46px] rounded-full !mr-4">
             <div>
               <p class="text-gray-500">Автор: <span class="text-gray-800 !font-semibold">{{dish.author.name}}</span></p>
               <p class="text-gray-800 font-semibold text-[13px]">{{dish.author.status}}</p>
@@ -118,8 +118,6 @@ export default {
       
       <!-- Правая колонка (описание и ингредиенты) -->
       <div class="w-full lg:w-1/2">
-
-        
 
         <div class="bg-white p-6 rounded-lg shadow-md !mb-6">
           <h2 class="text-xl !font-semibold !mb-4">Описание</h2>

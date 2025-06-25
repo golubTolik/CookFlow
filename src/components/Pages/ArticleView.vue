@@ -69,10 +69,10 @@ export default {
         Назад к статьям
       </button>
 
-      <div class="flex space-x-4 !mb-4 text-gray-500">
+    <div class="flex space-x-4 !mb-4 text-gray-500">
       <!-- Кнопка лайка -->
       <button @click="toggleLike" class="flex items-center">
-        <div class="flex items-center !mr-2 bg-gray-100 px-4 py-2 rounded-full">
+        <div class="flex items-center !mr-2 bg-gray-100 px-4 py-2 rounded-full" :style="{ background: article.like > 0 ? 'red' : '' }">
             <i class="fa-regular fa-heart"></i>
             <span class="!ml-1">{{ article.like }}</span>
           </div>
@@ -80,8 +80,8 @@ export default {
         
       <!-- Кнопка избранного -->
       <button @click="toggleFavourite" class="flex items-center">
-        <div class="flex items-center !mr-2 bg-gray-100 px-4 py-2 rounded-full">
-            <i :class="['fa-solid', 'fa-bookmark', 'bookmark-icon', {'bookmark-active': ''}]"></i>
+        <div class="flex items-center !mr-2 bg-gray-100 px-4 py-2 rounded-full" :style="{ background: article.favourites > 0 ? '#f1c40f' : '' }">
+            <i :class="['fa-solid', 'fa-bookmark', 'bookmark-icon']" ></i>
             <span class="!ml-1">{{ article.favourites }}</span>
         </div>
       </button>
@@ -167,10 +167,10 @@ export default {
       
         <!-- Список комментариев -->
         <div v-if="article.comment.length > 0" class="space-y-6">
-          <div v-for="(comment, index) in article.comment" :key="index" class="border-b pb-6 last:border-b-0 last:pb-0">
+          <div v-for="(comment, index) in article.comment" :key="index" class="pb-6 last:pb-0">
             <div class="flex items-start">
-              <div class="bg-gray-200 rounded-xl w-16 h-16 flex items-center justify-center !mr-4">
-                <span class="text-xl font-bold text-gray-500">{{ comment.user.charAt(0) }}</span>
+              <div class="bg-gray-200 rounded-xl !w-16 !h-16 flex items-center justify-center !mr-4">
+                <span class="text-xl font-bold text-gray-500 !w-16 text-center">{{ comment.user.charAt(0) }}</span>
               </div>
               <div class="flex flex-col !mb-2">
                 <h3 class="!font-semibold text-[16px]">{{ comment.user }}</h3>
