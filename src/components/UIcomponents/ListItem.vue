@@ -11,9 +11,9 @@ export default {
 
 <template>
   <div class="dishe-card bg-white rounded-xl shadow-md overflow-hidden" @click="$emit('openDishe',dishe.id)">
-    <div class="h-65 overflow-hidden">
+    <div class="h-auto overflow-hidden lg:h-65">
       <!-- <span class="absolute rounded-br-lg rounded-tl-xl text-sm text-gray-800 px-2 py-1 bg-[#06D6A0]">Рецепт</span> -->
-      <img v-if="dishe.img" class="pointer-events-none" :src="dishe.img" alt="">
+      <img v-if="dishe.img" class="pointer-events-none w-full" :src="dishe.img" alt="">
       <div v-else class="w-full h-full bg-gray-200  rounded-xl flex items-center justify-center text-gray-500">
         <img  class="w-[32px] text-4xl" src="@/components/icons/food.svg" alt="">
       </div>

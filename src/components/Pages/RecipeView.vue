@@ -79,7 +79,7 @@ export default {
     <div class="flex flex-col lg:flex-row gap-8 !mb-6">
       <!-- Левая колонка (изображение и детали) -->
       <div class="w-full lg:w-1/2">
-        <img :src="dish.img" :alt="dish.name" class="w-full h-auto rounded-lg shadow-lg !mb-6">
+        <img :src="dish.img" :alt="dish.name" class="pointer-events-none w-full h-auto rounded-lg shadow-lg !mb-6">
         
         <div class="bg-white p-6 rounded-lg shadow-md !mb-6">
           <h2 class="text-xl !font-semibold !mb-4">Детали рецепта</h2>
@@ -169,8 +169,8 @@ export default {
     </div>
 
     
-    <div class="flex !justify-center !mb-6 ">
-      <div class="bg-white p-6 rounded-lg shadow-md !mb-8 lg:w-1/2" id="comments">
+    <div class="flex !justify-center">
+      <div class="bg-white p-6 rounded-lg shadow-md lg:w-1/2" id="comments">
         <h2 class="text-2xl !font-semibold !mb-6">Комментарии ({{ dish.comment.length }})</h2>
       
         <!-- Форма добавления комментария -->

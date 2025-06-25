@@ -36,7 +36,7 @@ export default {
         const isFiltersOpen = ref(false);
         
         const checkMobile = () => {
-            isMobile.value = window.innerWidth < 768;
+            isMobile.value = window.innerWidth <= 768;
         };
         
         onMounted(() => {
@@ -76,7 +76,7 @@ export default {
                 <button 
                     v-if="isMobile"
                     @click="toggleFilters"
-                    class="md:hidden text-sm bg-[#06D6A0] hover:bg-[#05b38d] text-white py-1 px-3 rounded-full transition flex items-center"
+                    class="lg:hidden text-sm bg-[#06D6A0] hover:bg-[#05b38d] text-white py-1 px-3 rounded-full transition flex items-center"
                 >
                     <span>{{ isFiltersOpen ? 'Скрыть' : 'Фильтры' }}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transition-transform" 
