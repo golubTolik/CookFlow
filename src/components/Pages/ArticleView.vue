@@ -16,7 +16,6 @@ export default {
         { id: 7, icon: "🍳", title: "Завтраки" },
         { id: 8, icon: "🎉", title: "Праздничные блюда" }
       ],
-    //   article: null,
 
       newComment: '',
       currentUser: 'Анонимный пользователь'
