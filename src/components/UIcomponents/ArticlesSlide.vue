@@ -25,24 +25,12 @@ export default {
   },
   computed: {
     filteredArticles() {
-      let filtered = this.articles;
-      
-      // Фильтрация по категории
+      // // Фильтрация по категории
       if (this.selectedCategory) {
-        filtered = filtered.filter(article => article.category === this.selectedCategory.id);
+        return this.articles.filter(article => article.category === this.selectedCategory.id);
       }
-      
-      // Пагинация
-      const start = (this.currentPage - 1) * this.itemsPerPage;
-      return filtered.slice(start, start + this.itemsPerPage);
+      return this.articles
     },
-    totalPages() {
-      const totalItems = this.selectedCategory 
-        ? this.articles.filter(a => a.category === this.selectedCategory.id).length
-        : this.articles.length;
-        
-      return Math.ceil(totalItems / this.itemsPerPage);
-    }
   },
   methods: {
     selectCategory(category) {
@@ -132,19 +120,6 @@ export default {
         Сбросить выбор
       </button>
     </div>
-      
-      <!-- Пагинация -->
-      <div class="flex justify-center !mt-12">
-        <button v-for="page in totalPages" :key="page"
-                class="!mx-1 px-4 py-2 rounded-lg"
-                :class="{
-                  'bg-[#06D6A0] text-white': currentPage === page,
-                  'bg-gray-100 hover:bg-gray-200': currentPage !== page
-                }"
-                @click="currentPage = page">
-          {{ page }}
-        </button>
-      </div>
     </div>
   </div>
 </template>
