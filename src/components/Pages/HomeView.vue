@@ -1,5 +1,5 @@
 <script>
-import HomeSlide from '@/components/UIcomponents/HomeSlide.vue';
+import HomeSlide from '@/components/Articles/HomeSlide.vue';
 
 export default {
   props: ['dishes'],

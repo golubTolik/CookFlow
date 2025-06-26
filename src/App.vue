@@ -1,5 +1,5 @@
 <script>
-import Header from './components/UIcomponents/Header.vue';
+import Header from './components/Layout/Header.vue';
 import hachImg from '@/components/icons/Hachapuri-po-adjarski-500x350-1000x667.jpeg';
 import borshImg from '@/components/icons/borsh.jpg'
 import macarraoImg from '@/components/icons/macarrao-com-presunto.jpeg'

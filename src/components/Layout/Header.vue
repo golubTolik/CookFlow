@@ -1,6 +1,6 @@
 <script>
-import Dialog from './Dialog.vue';
-import Login from './Login.vue';
+import Dialog from '../UI/Dialog.vue';
+import Login from '../Auth/Login.vue';
 import logo from '@/components/icons/logo4.png';
 
 export default {

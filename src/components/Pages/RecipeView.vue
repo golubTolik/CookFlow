@@ -1,6 +1,6 @@
 <script>
-import ActionsButton from '../UIcomponents/ActionsButton.vue';
-import Comments from '../UIcomponents/Comments.vue';
+import ActionsButton from '../UI/ActionsButton.vue';
+import Comments from '../Comments/Comments.vue';
 export default {
   name: 'RecipeView',
   components: { ActionsButton, Comments },

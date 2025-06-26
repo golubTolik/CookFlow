@@ -1,7 +1,7 @@
 <script>
-import FiltersPanel from '@/components/UIcomponents/FiltersPanel.vue';
-import SearchBar from '@/components/UIcomponents/SearchBar.vue';
-import List from '@/components/UIcomponents/List.vue';
+import FiltersPanel from '@/components/Filters/FiltersPanel.vue';
+import SearchBar from '@/components/UI/SearchBar.vue';
+import List from '@/components/UI/List/List.vue';
 
 export default {
   props: ['dishes'],

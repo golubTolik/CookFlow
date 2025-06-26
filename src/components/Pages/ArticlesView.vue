@@ -1,5 +1,5 @@
 <script>
-import ArticlesSlide from '@/components/UIcomponents/ArticlesSlide.vue';
+import ArticlesSlide from '@/components/Articles/ArticlesSlide.vue';
 
 export default {
   props: ['articles'],

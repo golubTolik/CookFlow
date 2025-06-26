@@ -1,5 +1,5 @@
 <script>
-import FilterSection from './FilterSection.vue';
+import FilterSection from '../Filters/FilterSection.vue';
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
 export default {
