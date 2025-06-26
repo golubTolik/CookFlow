@@ -1,6 +1,9 @@
 <script>
+import ActionsButton from '../UIcomponents/ActionsButton.vue'
+import Comments from '../UIcomponents/Comments.vue'
 export default {
   name: 'ArticlePage',
+  components: { ActionsButton, Comments },
   props: {
     articles: Array,
   },
@@ -17,7 +20,6 @@ export default {
         { id: 8, icon: "🎉", title: "Праздничные блюда" }
       ],
 
-      newComment: '',
       currentUser: 'Анонимный пользователь'
     }
   },
@@ -41,15 +43,14 @@ export default {
     toggleFavourite() {
       this.article.favourites += 1;
     },
-    addComment() {
-      if (this.newComment.trim()) {
+    addComment(commentText) {
+       if (commentText.trim()) {
         this.article.comment.push({
           user: this.currentUser,
-          text: this.newComment,
+          text: commentText,
           date: new Date().toLocaleDateString('ru-RU')
         });
-        this.newComment = '';
-      }
+      } 
     }
   }
 }
@@ -60,7 +61,7 @@ export default {
     <div class="container !mx-auto px-4 py-8">
       <!-- Кнопка "Назад" -->
       <button 
-        @click="$router.go(-1)"
+        @click="$router.push(`/articles`)"
         class="!mb-6 flex items-center text-[#06D6A0] hover:text-[#05c191] transition"
       >
         <svg class="w-4 h-4 !mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -69,35 +70,18 @@ export default {
         Назад к статьям
       </button>
 
-    <div class="flex space-x-4 !mb-4 text-gray-500">
-      <!-- Кнопка лайка -->
-      <button @click="toggleLike" class="flex items-center">
-        <div class="flex items-center !mr-2 bg-gray-100 px-4 py-2 rounded-full" :style="{ background: article.like > 0 ? 'red' : '' }">
-            <i class="fa-regular fa-heart"></i>
-            <span class="!ml-1">{{ article.like }}</span>
-          </div>
-      </button>
-        
-      <!-- Кнопка избранного -->
-      <button @click="toggleFavourite" class="flex items-center">
-        <div class="flex items-center !mr-2 bg-gray-100 px-4 py-2 rounded-full" :style="{ background: article.favourites > 0 ? '#f1c40f' : '' }">
-            <i :class="['fa-solid', 'fa-bookmark', 'bookmark-icon']" ></i>
-            <span class="!ml-1">{{ article.favourites }}</span>
-        </div>
-      </button>
-
-      <!-- Ссылка на комментарии -->
-      <a href="#comments" class="flex items-center">
-        <div class="flex items-center !mr-2 bg-gray-100 px-4 py-2 rounded-full">
-            <i class="fa-regular fa-comment" ></i>
-            <span class="!ml-1">{{ article.comment.length }}</span>
-          </div>
-      </a>
-    </div>
+      <ActionsButton 
+        v-if="article"
+        :likeCount="article.like"
+        :favouriteCount="article.favourites"
+        :commentCount="article.comment.length"
+        :onLike="toggleLike"
+        :onFavourite="toggleFavourite"
+      />
 
       <!-- Контент статьи -->
       <div v-if="article" class="bg-white rounded-xl shadow-lg overflow-hidden">
-        <!-- Заголовок -->
+        <!-- Изображение -->
         <div class="h-96 bg-gray-200 flex items-center justify-center">
           <span class="text-9xl">{{ article.icon }}</span>
         </div>
@@ -145,7 +129,7 @@ export default {
       <div v-else class="text-center py-12">
         <p class="text-xl text-gray-500 !mb-4">Статья не найдена</p>
         <button 
-          @click="$router.go(-1)"
+          @click="$router.push(`/articles`)"
           class="text-sm bg-[#06D6A0] hover:bg-[#05c191] text-white py-2 px-4 rounded-full transition"
         >
           Вернуться к статьям
@@ -153,38 +137,13 @@ export default {
       </div>
 
       <!-- Комментарии -->
-    <div v-if="article" class="flex !justify-center !mt-6">
-      <div class="bg-white p-6 rounded-lg shadow-md lg:w-1/2" id="comments">
-        <h2 class="text-2xl !font-semibold !mb-6">Комментарии ({{ article.comment.length }})</h2>
-      
-        <!-- Форма добавления комментария -->
-        <div class="!mb-8">
-          <textarea v-model="newComment" placeholder="Напишите ваш комментарий..." class="w-full p-4 border-[#06D6A0] border-1 rounded-lg focus:border-[#06D6A0] focus:outline-none focus:bg-[#06d69e4b]  !mb-3"></textarea>
-          <button @click="addComment" class="px-6 py-2 bg-[#06D6A0] text-white rounded-lg hover:bg-[#05b38d] transition">
-            Отправить комментарий
-          </button>
-        </div>
-      
-        <!-- Список комментариев -->
-        <div v-if="article.comment.length > 0" class="space-y-6">
-          <div v-for="(comment, index) in article.comment" :key="index" class="pb-6 last:pb-0">
-            <div class="flex items-start">
-              <div class="bg-gray-200 rounded-xl !w-16 !h-16 flex items-center justify-center !mr-4">
-                <span class="text-xl font-bold text-gray-500 !w-16 text-center">{{ comment.user.charAt(0) }}</span>
-              </div>
-              <div class="flex flex-col !mb-2">
-                <h3 class="!font-semibold text-[16px]">{{ comment.user }}</h3>
-                <p class="text-gray-700 text-[14px]">{{ comment.text }}</p>
-                <span class="text-gray-500 text-[12px]">{{ comment.date }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      
-        <div v-else class="text-center py-8 text-gray-500">
-          Пока нет комментариев. Будьте первым!
-        </div>
-      </div>
+    <div v-if="article">
+      <Comments 
+        v-if="article"
+        :comments="article.comment"
+        :currentUser="currentUser"
+        @add-comment="addComment"
+      />
     </div>
 
     </div>
