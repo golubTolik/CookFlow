@@ -40,11 +40,12 @@ export default {
 <template>
   <div v-if="dish" class="container text-gray-800 !mx-auto px-4 py-8">
     <!-- Кнопка назад -->
-    <button @click="$router.push(`/recipes`)" class="!mb-6 flex items-center text-[#06D6A0] hover:text-[#05b38d]">
+    <button @click="$router.go(-1)" class="!mb-6 flex items-center text-[#06D6A0] hover:text-[#05b38d]">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 !mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
       </svg>
-      Назад к рецептам
+      Назад
+      <!-- Назад к рецептам -->
     </button>
     
     <!-- Заголовок -->
@@ -160,7 +161,7 @@ export default {
 
   <div v-else class="container !mx-auto px-4 py-8 text-center">
     <p class="text-2xl text-gray-500">Рецепт не найден</p>
-    <button @click="$router.push('/recipes')" class="!mt-4 px-6 py-2 bg-[#06D6A0] text-white rounded-full">
+    <button @click="$router.go(-1)" class="!mt-4 px-6 py-2 bg-[#06D6A0] text-white rounded-full">
       Вернуться к рецептам
     </button>
   </div>

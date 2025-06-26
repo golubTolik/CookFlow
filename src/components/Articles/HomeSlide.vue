@@ -66,6 +66,9 @@ export default {
     selectCategory(category) {
       this.$emit('category-selected', category);
       this.goToSlide(2);
+    },
+    openDishe(id){
+      this.$router.push(`/recipe/${id}`);
     }
   }
 }
