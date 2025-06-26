@@ -1238,7 +1238,7 @@ export default {
 </script>
 
 <template>
-  <Header />
+  <Header/>
   <router-view :dishes="dishesWithAuthors" :articles="articles"/>
   <footer class="py-8 text-center text-gray-500">
     © 2025 Коллекция-рецептов.рф <br> Все права защищены.
