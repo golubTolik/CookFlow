@@ -18,7 +18,15 @@ export default {
         { title: 'Главная', path: '/' },
         { title: 'Рецепты', path: '/recipes' },
         { title: 'Статьи', path: '/articles' }
-      ]
+      ],
+      currentUser: null
+    }
+  },
+  mounted() {
+    // При загрузке компонента проверяем наличие авторизованного пользователя
+    const savedUser = localStorage.getItem('currentUser');
+    if (savedUser) {
+      this.currentUser = JSON.parse(savedUser);
     }
   },
   methods: {
@@ -28,6 +36,17 @@ export default {
     openLoginDialogMobile() {
       this.isMenuOpen = false;
       this.dialogVisible = true;
+    },
+    // Обработчик успешной авторизации
+    handleLogin(user) {
+      this.currentUser = user;
+      this.dialogVisible = false;
+    },
+    // Метод выхода из системы
+    logout() {
+      this.currentUser = null;
+      localStorage.removeItem('currentUser');
+      this.isMenuOpen = false;
     }
   }
 }
@@ -64,12 +83,21 @@ export default {
       </div>
 
       <div class="hidden md:block">
-        <div class="cursor-pointer text-xl !px-6 !py-1 border-1 border-[#06D6A0] duration-200 rounded-full capitalize text-black hover:bg-[#06D6A0] hover:-translate-y-1 hover:shadow-lg" @click="dialogVisible=true">
+        <div v-if="currentUser" class="flex items-center gap-4">
+          <span class="text-gray-700">Привет, {{ currentUser.name }}!</span>
+          <button @click="logout" 
+                  class="px-4 py-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition">
+            Выйти
+          </button>
+        </div>
+
+        <div v-else class="cursor-pointer text-xl !px-6 !py-1 border-1 border-[#06D6A0] duration-200 rounded-full capitalize text-black hover:bg-[#06D6A0] hover:-translate-y-1 hover:shadow-lg" @click="dialogVisible=true">
           <p>Войти</p>
         </div>
       </div>
     </div>
 
+    <!-- Мобильная версия -->
     <div v-if="isMenuOpen" class="md:hidden bg-white py-2 border-t">
       <div class="container mx-auto px-4 flex flex-col">
         <router-link 
@@ -85,14 +113,22 @@ export default {
         >
           {{ link.title }}
         </router-link>
-        <div class="cursor-pointer text-lg px-6 py-3 !mt-2 border border-[#06D6A0] duration-200 rounded-full capitalize text-black text-center hover:bg-[#06D6A0]" @click="openLoginDialogMobile">
+
+        <div v-if="currentUser" class="py-3 px-2 flex flex-col gap-2">
+          <span class="text-gray-700">Привет, {{ currentUser.name }}!</span>
+          <button @click="logout" 
+                  class="w-full py-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition">
+            Выйти
+          </button>
+        </div>
+        <div v-else class="cursor-pointer text-lg px-6 py-3 !mt-2 border border-[#06D6A0] duration-200 rounded-full capitalize text-black text-center hover:bg-[#06D6A0]" @click="openLoginDialogMobile">
           <p>Войти</p>
         </div>
       </div>
     </div>
 
     <Dialog v-model:show="dialogVisible">
-      <Login v-model:show="dialogVisible"/>
+      <Login v-model:show="dialogVisible" @login="handleLogin"/>
     </Dialog>
   </header>
 </template>

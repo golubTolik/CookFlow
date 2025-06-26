@@ -26,17 +26,17 @@ export default {
     <!-- Кнопка лайка -->
     <button @click="handleLike" class="flex cursor-pointer items-center">
       <div class="flex items-center !mr-2 ">
-        <i class="icon fa-regular fa-heart bg-gray-100 px-4 py-2 rounded-full flex items-center" :style="{ background: likeCount > 0 ? '#ff0033' : '' }">
-          <span class="!ml-1 text-xs">{{ likeCount }}</span>
+        <i class="icon fa-regular fa-heart bg-gray-100 px-4 py-2 rounded-full flex items-center" :class="[likeCount > 0 ? 'text-red-500' : '']">
+          <span class="!ml-2 text-xs text-gray-500">{{ likeCount }}</span>
         </i>
       </div>
     </button>
-    
+     <!-- <p :class="['text-xl', likeCount > 0 ? 'text-red-500' : 'text-gray-400']" >♥</p> -->
     <!-- Кнопка избранного -->
     <button @click="handleFavourite" class="flex cursor-pointer items-center">
       <div class="flex items-center !mr-2 ">
-        <i class="icon fa-solid fa-bookmark bg-gray-100 px-4 py-2 rounded-full flex items-center" :style="{ background: favouriteCount > 0 ? '#f1c40f' : '' }">
-          <span class="!ml-1 text-xs">{{ favouriteCount }}</span>
+        <i class="icon fa-solid fa-bookmark bg-gray-100 px-4 py-2 rounded-full flex items-center" :class="[favouriteCount > 0 ? 'text-[#f1c40f]' : '']">
+          <span class="!ml-2 text-xs text-gray-500">{{ favouriteCount }}</span>
         </i>
       </div>
     </button>
@@ -45,7 +45,7 @@ export default {
     <a href="#comments" class="flex items-center">
       <div class="flex items-center !mr-2 ">
         <i class="icon fa-regular fa-comment bg-gray-100 px-4 py-2 rounded-full flex items-center">
-          <span class="!ml-1 text-xs">{{ commentCount }}</span>
+          <span class="!ml-2 text-xs">{{ commentCount }}</span>
         </i>
       </div>
     </a>
