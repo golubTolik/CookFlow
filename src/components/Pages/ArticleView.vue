@@ -77,6 +77,7 @@ export default {
         :commentCount="article.comment.length"
         :onLike="toggleLike"
         :onFavourite="toggleFavourite"
+        class="!mb-4"
       />
 
       <!-- Контент статьи -->

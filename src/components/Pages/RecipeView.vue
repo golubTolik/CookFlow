@@ -58,6 +58,7 @@ export default {
       :commentCount="dish.comment.length"
       :onLike="toggleLike"
       :onFavourite="toggleFavourite"
+      class="!mb-4"
     />
     
     <div class="flex flex-col lg:flex-row gap-8 !mb-6">

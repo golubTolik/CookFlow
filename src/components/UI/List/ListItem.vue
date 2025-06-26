@@ -1,11 +1,21 @@
 <script>
+import ActionsButton from '../ActionsButton.vue';
 export default {
+  components: { ActionsButton },
   props: {
     dishe: {
       type: Object,
       required: true
     }
   },
+  methods: { 
+    toggleLike() {
+      this.dishe.like += 1;
+    },
+    toggleFavourite() {
+      this.dishe.favourites += 1;
+    },
+  }
 }
 </script>
 
@@ -33,20 +43,14 @@ export default {
             </div>
         </div>
         <p class="text-gray-600 mb-4">{{ dishe.description }}</p>
-        <div class="flex  text-gray-400">
-          <div class="flex items-center !mr-2 bg-gray-100 px-2 rounded-full">
-            <i class="fa-regular fa-heart"></i>
-            <p class="!ml-1">{{ dishe.like }}</p>
-          </div>
-          <div class="flex items-center !mr-2 bg-gray-100 px-2 rounded-full">
-            <i :class="['fa-solid', 'fa-bookmark', 'bookmark-icon', {'bookmark-active': ''}]"></i>
-            <p class="!ml-1">{{ dishe.favourites }}</p>
-          </div>
-          <div class="flex items-center !mr-2 bg-gray-100 px-2 rounded-full">
-            <i class="fa-regular fa-comment" ></i>
-            <p class="!ml-1">{{ dishe.comment.length }}</p>
-          </div>
-        </div>
+        <ActionsButton 
+          :likeCount="dishe.like"
+          :favouriteCount="dishe.favourites"
+          :commentCount="dishe.comment.length"
+          :onLike="toggleLike"
+          :onFavourite="toggleFavourite"
+          class="!mt-1"
+        />
       </div>
   </div>
 </template>
