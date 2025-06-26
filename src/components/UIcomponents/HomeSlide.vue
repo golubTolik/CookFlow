@@ -89,7 +89,7 @@ export default {
     <!-- Категории рецептов -->
     <section class="py-12 bg-white">
       <div class="container !mx-auto px-4 text-gray-800">
-        <h2 class="text-3xl font-bold text-center !mb-10 font-[Comfortaa]">Категории</h2>
+        <h2 class="text-3xl !font-bold text-center !mb-10 font-[Comfortaa]">Категории</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           <div v-for="category in availableTypeOfDish.slice(0, 12)" :key="category" 
                class="category-card bg-gray-50 rounded-xl shadow-md p-4 text-center cursor-pointer hover:shadow-lg transition-shadow"
@@ -107,7 +107,7 @@ export default {
     <section class="py-12 bg-gray-50">
       <div class="container !mx-auto px-4 text-gray-800">
         <div class="flex justify-between items-center !mb-8">
-          <h2 class="text-3xl font-bold font-[Comfortaa]">Популярные рецепты</h2>
+          <h2 class="text-3xl !font-bold font-[Comfortaa]">Популярные рецепты</h2>
           <router-link to="/recipes">
             <button @click="goToSlide(2)" class="text-[#06D6A0] hover:text-green-500 font-medium flex items-center">
               Смотреть все
@@ -128,7 +128,7 @@ export default {
                 <img  class="w-[32px] text-4xl" src="@/components/icons/food.svg" alt="">
             </div>
             <div class="p-4">
-              <h3 class="font-bold text-lg !mb-1">{{ dish.name }}</h3>
+              <h3 class="!font-bold text-lg !mb-1 font-[Comfortaa]">{{ dish.name }}</h3>
               <div class="flex items-center text-gray-600 text-sm !mb-1">
                 <span class="!mr-3 flex"><img class="w-[16px] !mr-[5px]" src="@/components/icons/clock.svg" alt="">{{ dish.cookingTime }} мин</span>
                 <span>{{ dish.cuisine }}</span>
@@ -144,7 +144,7 @@ export default {
     <section class="py-12 bg-white">
       <div class="container !mx-auto px-4 text-gray-800">
         <div class="flex justify-between items-center !mb-8">
-          <h2 class="text-3xl font-bold font-[Comfortaa]">Новые рецепты</h2>
+          <h2 class="text-3xl !font-bold font-[Comfortaa]">Новые рецепты</h2>
           <router-link to="/recipes">
             <button @click="goToSlide(2)" class="text-[#06D6A0] hover:text-green-500 font-medium flex items-center">
               Смотреть все
@@ -165,7 +165,7 @@ export default {
                 <img  class="w-[32px] text-4xl" src="@/components/icons/food.svg" alt="">
             </div>
             <div class="p-4">
-              <h3 class="font-bold text-lg !mb-1">{{ dish.name }}</h3>
+              <h3 class="!font-bold text-lg !mb-1 font-[Comfortaa]">{{ dish.name }}</h3>
               <div class="flex items-center text-gray-600 text-sm !mb-1">
                 <span class="!mr-3 flex"><img class="w-[16px] !mr-[5px]" src="@/components/icons/clock.svg" alt="">{{ dish.cookingTime }} мин</span>
                 <span>{{ dish.cuisine }}</span>
@@ -180,21 +180,21 @@ export default {
     <!-- Преимущества -->
     <section class="py-12 bg-gray-50">
       <div class="container !mx-auto px-4 text-gray-800">
-        <h2 class="text-3xl font-bold text-center !mb-10 font-[Comfortaa]">Почему выбирают нас</h2>
+        <h2 class="text-3xl !font-bold text-center !mb-10 font-[Comfortaa]">Почему выбирают нас</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="bg-white p-6 rounded-xl shadow-md text-center">
             <div class="text-[#06D6A0] text-4xl !mb-4">✓</div>
-            <h3 class="text-xl font-bold !mb-2">Проверенные рецепты</h3>
+            <h3 class="text-xl !font-bold !mb-2">Проверенные рецепты</h3>
             <p class="text-gray-600">Каждый рецепт протестирован и получил положительные отзывы</p>
           </div>
           <div class="bg-white p-6 rounded-xl shadow-md text-center">
             <div class="text-4xl !mb-4">⏱️</div>
-            <h3 class="text-xl font-bold !mb-2">Экономия времени</h3>
+            <h3 class="text-xl !font-bold !mb-2">Экономия времени</h3>
             <p class="text-gray-600">Фильтры по времени приготовления помогут найти идеальный вариант</p>
           </div>
           <div class="bg-white p-6 rounded-xl shadow-md text-center">
             <div class="text-4xl !mb-4">❤️</div>
-            <h3 class="text-xl font-bold !mb-2">Для всех вкусов</h3>
+            <h3 class="text-xl !font-bold !mb-2">Для всех вкусов</h3>
             <p class="text-gray-600">Для каждого образа жизни и кулинарных пристрастий</p>
           </div>
         </div>
@@ -204,10 +204,10 @@ export default {
     <!-- Призыв к действию -->
     <section class="py-16 bg-[#06D6A0] text-white text-center">
       <div class="container !mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold !mb-4">Начните готовить прямо сейчас!</h2>
+        <h2 class="text-3xl md:text-4xl !font-bold font-[Comfortaa] !mb-4">Начните готовить прямо сейчас!</h2>
         <p class="text-xl !mb-8 max-w-2xl !mx-auto">Присоединяйтесь к сообществу любителей кулинарии</p>
         <router-link to="/recipes">
-          <button @click="goToSlide(2)" class="bg-white cursor-pointer text-[#06D6A0] hover:bg-gray-200 font-bold py-3 px-8 rounded-full text-lg transition duration-300">
+          <button @click="goToSlide(2)" class="bg-white font-[Comfortaa] cursor-pointer text-[#06D6A0] hover:bg-gray-200 font-bold py-3 px-8 rounded-full text-lg transition duration-300">
             Исследовать коллекцию
           </button>
         </router-link>

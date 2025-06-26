@@ -95,10 +95,10 @@ export default {
           </div>
           
           <!-- Заголовок -->
-          <h1 class="text-3xl !font-bold !mb-4">{{ article.title }}</h1>
+          <h1 class="text-xl !font-bold !mb-4 sm:text-3xl font-[Comfortaa]">{{ article.title }}</h1>
           
           <!-- Краткое описание -->
-          <p class="text-gray-700 text-lg !mb-8">{{ article.excerpt }}</p>
+          <p class="text-gray-700 !mb-8 text-base sm:text-lg">{{ article.excerpt }}</p>
           
           <!-- Контент статьи -->
           <div class="prose max-w-none !mb-8" v-html="article.content"></div>
@@ -116,10 +116,10 @@ export default {
           
           <!-- Категория -->
           <div class="flex items-center">
-            <span class="text-lg !mr-2">Категория:</span>
+            <span class="text-base sm:text-lg !mr-2">Категория:</span>
             <span class="inline-flex items-center bg-green-100 text-green-800 px-3 py-1 rounded-full">
               <span class="text-xl !mr-2">{{ getCategoryIcon(article.category) }}</span>
-              {{ getCategoryTitle(article.category) }}
+              <span class="text-xs sm:text-[15px]">{{ getCategoryTitle(article.category) }}</span>
             </span>
           </div>
         </div>

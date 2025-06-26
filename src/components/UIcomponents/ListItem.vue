@@ -20,7 +20,7 @@ export default {
     </div>
     <div class="py-3 px-5">
         <div class="flex justify-between">
-            <h3 class="text-xl font-bold text-gray-800">{{dishe.name}}</h3>
+            <h3 class="text-xl !font-bold font-[Comfortaa] text-gray-800">{{dishe.name}}</h3>
             <div class="flex items-center ">
               <span class="text-xs px-2 py-1 rounded-full capitalize"
               :class="{

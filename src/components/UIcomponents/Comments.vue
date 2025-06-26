@@ -23,7 +23,7 @@ export default {
 <template>
   <div class="flex !justify-center !mt-6">
     <div class="bg-white p-6 rounded-lg shadow-md lg:w-1/2" id="comments">
-      <h2 class="text-2xl !font-semibold !mb-6">Комментарии ({{ comments.length }})</h2>
+      <h2 class="text-lg sm:text-2xl !font-semibold !mb-6">Комментарии ({{ comments.length }})</h2>
     
       <!-- Форма добавления комментария -->
       <div class="!mb-8">

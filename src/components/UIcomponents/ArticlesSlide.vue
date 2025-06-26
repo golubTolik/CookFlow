@@ -68,7 +68,7 @@ export default {
               }"
              @click="selectCategory(category)">
           <div class="text-4xl !mb-3">{{ category.icon }}</div>
-          <h3 class="font-bold">{{ category.title }}</h3>
+          <h3 class="font-bold text-xs sm:text-[15px]">{{ category.title }}</h3>
         </div>
       </div>
       
@@ -85,12 +85,12 @@ export default {
           <!-- Контент статьи -->
           <div class="p-6 h-auto lg:h-66 flex flex-col justify-between">
             <div>
-              <div class="flex items-center text-sm text-gray-500 mb-2">
+              <div class="flex items-center  text-gray-500 mb-2 text-xs sm:text-sm">
                 <span>{{ article.date }}</span>
                 <span class="!mx-2">•</span>
                 <span>{{ article.readTime }} мин чтения</span>
               </div>
-              <h3 class="text-xl font-bold !mb-3">{{ article.title }}</h3>
+              <h3 class="!font-bold !mb-3 text-base sm:text-xl font-[Comfortaa]">{{ article.title }}</h3>
               <p class="text-gray-700 !mb-4">{{ article.excerpt }}</p>
             </div>
             <div class="flex flex-col comtent-end justify-items-end justify-end">
