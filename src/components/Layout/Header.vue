@@ -63,7 +63,7 @@ export default {
 </script>
 
 <template>
-  <header class="items-center font-[Comfortaa]">
+  <header class="flex flex-col justify-center font-[Comfortaa]">
     <div class="container mx-auto flex flex-wrap justify-between items-center px-4 py-2">
       <router-link to="/" class="w-[120px] md:w-[150px] lg:w-[200px]">
         <img :src="logoPath" alt="Логотип" class="w-full">
