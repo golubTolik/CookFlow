@@ -20,13 +20,25 @@ export default {
         { id: 8, icon: "🎉", title: "Праздничные блюда" }
       ],
 
-      currentUser: 'Анонимный пользователь'
+      article: null,
+      currentUser: null,
+      newComment: ""
     }
   },
+  created() {
+    this.loadCurrentUser();
+    this.loadArticle();
+  },
   computed: {
-    article() {
-        return this.articles.find(a => a.id === parseInt(this.$route.params.id))
+    // article() {
+    //     return this.articles.find(a => a.id === parseInt(this.$route.params.id))
+    // },
+    isLiked() {
+      return this.article?.likes?.includes(this.currentUser?.id) || false;
     },
+    isFavorited() {
+      return this.article?.favorites?.includes(this.currentUser?.id) || false;
+    }
   },
   methods: {
     getCategoryIcon(categoryId) {
@@ -37,20 +49,102 @@ export default {
         const category = this.categories.find(c => c.id === categoryId)
         return category ? category.title : 'Без категории'
     },
+    loadArticle() {
+      const articles = JSON.parse(localStorage.getItem('articles')) || [];
+      this.article = articles.find(d => d.id === parseInt(this.$route.params.id));
+      
+      // Если рецепт не найден в localStorage, пробуем найти в пропсе
+      if (!this.article) {
+        this.article = this.articles?.find(d => d.id === parseInt(this.$route.params.id));
+        // Если нашли в пропсе, сохраняем в localStorage
+        if (this.article) {
+          this.saveArticle();
+        }
+      }
+    },
+    loadCurrentUser() {
+      const user = localStorage.getItem('currentUser');
+      if (user) {
+        this.currentUser = JSON.parse(user);
+      }
+    },
+    saveArticle() {
+      const articles = JSON.parse(localStorage.getItem('articles')) || [];
+      const index = articles.findIndex(r => r.id === this.article.id);
+      
+      if (index !== -1) {
+        articles[index] = this.article;
+      } else {
+        articles.push(this.article);
+      }
+      
+      localStorage.setItem('articles', JSON.stringify(articles));
+    },
     toggleLike() {
-      this.article.likes += 1;
+      this.loadCurrentUser()
+
+      if (!this.currentUser) {
+        // Генерируем глобальное событие
+        window.dispatchEvent(new CustomEvent('show-auth-modal'));
+        return;
+      }
+      
+      if (!this.article.likes) {
+        this.article.likes = [];
+      }
+      
+      const index = this.article.likes.indexOf(this.currentUser.id);
+      if (index === -1) {
+        this.article.likes.push(this.currentUser.id);
+      } else {
+        this.article.likes.splice(index, 1);
+      }
+      
+      this.saveArticle();
     },
     toggleFavourite() {
-      this.article.favourites += 1;
+      this.loadCurrentUser()
+
+      if (!this.currentUser) {
+        // Генерируем глобальное событие
+        window.dispatchEvent(new CustomEvent('show-auth-modal'));
+        return;
+      }
+      
+      if (!this.article.favorites) {
+        this.article.favorites = [];
+      }
+      
+      const index = this.article.favorites.indexOf(this.currentUser.id);
+      if (index === -1) {
+        this.article.favorites.push(this.currentUser.id);
+      } else {
+        this.article.favorites.splice(index, 1);
+      }
+      
+      this.saveArticle();
     },
     addComment(commentText) {
-       if (commentText.trim()) {
-        this.article.comments.push({
-          user: this.currentUser,
-          text: commentText,
-          date: new Date().toLocaleDateString('ru-RU')
-        });
-      } 
+      if (!this.currentUser) {
+        // Генерируем глобальное событие
+        window.dispatchEvent(new CustomEvent('show-auth-modal'));
+        return;
+      }
+      
+      if (!commentText.trim()) return;
+      
+      if (!this.article.comments) {
+        this.article.comments = [];
+      }
+      
+      this.article.comments.push({
+        userId: this.currentUser.id,
+        userName: this.currentUser.name,
+        text: commentText,
+        date: new Date().toLocaleDateString('ru-RU')
+      });
+      
+      this.saveArticle();
     }
   }
 }
@@ -72,9 +166,11 @@ export default {
 
       <ActionsButton 
         v-if="article"
-        :likeCount="article.likes.length"
-        :favouriteCount="article.favourites.length"
-        :commentCount="article.comments.length"
+        :likeCount="article.likes?.length || 0"
+        :favouriteCount="article.favorites?.length || 0"
+        :commentCount="article.comments?.length || 0"
+        :isLiked="isLiked"
+        :isFavorited="isFavorited"
         :onLike="toggleLike"
         :onFavourite="toggleFavourite"
         class="!mb-4"
