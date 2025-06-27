@@ -28,8 +28,17 @@ export default {
     if (savedUser) {
       this.currentUser = JSON.parse(savedUser);
     }
+
+    window.addEventListener('show-auth-modal', this.openLoginDialog);
+  },
+  beforeDestroy() {
+    // Убираем обработчик при уничтожении компонента
+    window.removeEventListener('show-auth-modal', this.openLoginDialog);
   },
   methods: {
+    openLoginDialog() {
+      this.dialogVisible = true;
+    },
     handleMobileClick() {
       this.isMenuOpen = false;
     },
@@ -47,6 +56,7 @@ export default {
       this.currentUser = null;
       localStorage.removeItem('currentUser');
       this.isMenuOpen = false;
+      location.reload()
     }
   }
 }
@@ -91,7 +101,7 @@ export default {
           </button>
         </div>
 
-        <div v-else class="cursor-pointer text-xl !px-6 !py-1 border-1 border-[#06D6A0] duration-200 rounded-full capitalize text-black hover:bg-[#06D6A0] hover:-translate-y-1 hover:shadow-lg" @click="dialogVisible=true">
+        <div v-else class="cursor-pointer text-xl !px-6 !py-1 border-1 border-[#06D6A0] duration-200 rounded-full capitalize text-black hover:bg-[#06D6A0] hover:-translate-y-1 hover:shadow-lg" @click="openLoginDialog">
           <p>Войти</p>
         </div>
       </div>

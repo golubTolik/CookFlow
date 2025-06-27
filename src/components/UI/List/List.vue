@@ -20,10 +20,10 @@ export default {
 <template>
   <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6" v-if="dishes.length > 0">
     <ListItem
-        v-for="dishe in dishes"
-        :key="dishe.id"
-        :dishe="dishe"
-        @click="openDishe(dishe.id)"
+        v-for="dish in dishes"
+        :key="dish.id"
+        :dish="dish"
+        @click="openDishe(dish.id)"
     />
     
   </div>

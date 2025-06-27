@@ -38,14 +38,14 @@ export default {
         return category ? category.title : 'Без категории'
     },
     toggleLike() {
-      this.article.like += 1;
+      this.article.likes += 1;
     },
     toggleFavourite() {
       this.article.favourites += 1;
     },
     addComment(commentText) {
        if (commentText.trim()) {
-        this.article.comment.push({
+        this.article.comments.push({
           user: this.currentUser,
           text: commentText,
           date: new Date().toLocaleDateString('ru-RU')
@@ -72,9 +72,9 @@ export default {
 
       <ActionsButton 
         v-if="article"
-        :likeCount="article.like"
-        :favouriteCount="article.favourites"
-        :commentCount="article.comment.length"
+        :likeCount="article.likes.length"
+        :favouriteCount="article.favourites.length"
+        :commentCount="article.comments.length"
         :onLike="toggleLike"
         :onFavourite="toggleFavourite"
         class="!mb-4"
@@ -141,7 +141,7 @@ export default {
     <div v-if="article">
       <Comments 
         v-if="article"
-        :comments="article.comment"
+        :comments="article.comments"
         :currentUser="currentUser"
         @add-comment="addComment"
       />

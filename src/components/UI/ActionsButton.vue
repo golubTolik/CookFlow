@@ -5,6 +5,8 @@ export default {
     likeCount: Number,
     favouriteCount: Number,
     commentCount: Number,
+    isLiked: Boolean,
+    isFavorited: Boolean,
     onLike: Function,
     onFavourite: Function
   },
@@ -26,7 +28,7 @@ export default {
     <!-- Кнопка лайка -->
     <button @click="handleLike" class="flex cursor-pointer items-center">
       <div class="flex items-center !mr-2 ">
-        <i class="icon fa-regular fa-heart bg-gray-100 px-4 py-2 rounded-full flex items-center" :class="[likeCount > 0 ? 'text-red-500' : '']">
+        <i class="icon fa-regular fa-heart bg-gray-100 px-4 py-2 rounded-full flex items-center" :class="[isLiked  ? 'text-red-500' : '']">
           <span class="!ml-2 text-xs text-gray-500">{{ likeCount }}</span>
         </i>
       </div>
@@ -35,7 +37,7 @@ export default {
     <!-- Кнопка избранного -->
     <button @click="handleFavourite" class="flex cursor-pointer items-center">
       <div class="flex items-center !mr-2 ">
-        <i class="icon fa-solid fa-bookmark bg-gray-100 px-4 py-2 rounded-full flex items-center" :class="[favouriteCount > 0 ? 'text-[#f1c40f]' : '']">
+        <i class="icon fa-solid fa-bookmark bg-gray-100 px-4 py-2 rounded-full flex items-center" :class="[isFavorited ? 'text-[#f1c40f]' : '']">
           <span class="!ml-2 text-xs text-gray-500">{{ favouriteCount }}</span>
         </i>
       </div>

@@ -26,8 +26,10 @@ export default {
         };
         localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
 
+        
         this.$emit('login', this.currentUser);
         this.$emit('update:show', false)
+        location.reload()
       } else {
         this.errorMessage = "Неверный логин или пароль";
       }
@@ -55,8 +57,10 @@ export default {
       };
       localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
 
+      
       this.$emit('login', this.currentUser);
       this.$emit('update:show', false)
+      location.reload()
     },
   }
 }

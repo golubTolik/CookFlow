@@ -9,29 +9,124 @@ export default {
   },
   data() {
     return {
-      currentUser: 'Анонимный пользователь'
+      // currentUser: 'Анонимный пользователь'
+      dish: null,
+      currentUser: null,
+      newComment: ""
     }
   },
+  created() {
+    this.loadCurrentUser();
+    this.loadRecipe();
+  },
   computed: {
-    dish() {
-      return this.dishes.find(d => d.id === parseInt(this.$route.params.id));
+    // dish() {
+    //   return this.dishes.find(d => d.id === parseInt(this.$route.params.id));
+    // },
+    isLiked() {
+      return this.dish?.likes?.includes(this.currentUser?.id) || false;
+    },
+    isFavorited() {
+      return this.dish?.favorites?.includes(this.currentUser?.id) || false;
     }
   },
   methods: {
+    loadRecipe() {
+      const recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+      this.dish = recipes.find(d => d.id === parseInt(this.$route.params.id));
+      
+      // Если рецепт не найден в localStorage, пробуем найти в пропсе
+      if (!this.dish) {
+        this.dish = this.dishes?.find(d => d.id === parseInt(this.$route.params.id));
+        // Если нашли в пропсе, сохраняем в localStorage
+        if (this.dish) {
+          this.saveRecipe();
+        }
+      }
+    },
+    loadCurrentUser() {
+      const user = localStorage.getItem('currentUser');
+      if (user) {
+        this.currentUser = JSON.parse(user);
+      }
+    },
+    saveRecipe() {
+      const recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+      const index = recipes.findIndex(r => r.id === this.dish.id);
+      
+      if (index !== -1) {
+        recipes[index] = this.dish;
+      } else {
+        recipes.push(this.dish);
+      }
+      
+      localStorage.setItem('recipes', JSON.stringify(recipes));
+    },
     toggleLike() {
-      this.dish.like += 1;
+      this.loadCurrentUser()
+
+      if (!this.currentUser) {
+        // Генерируем глобальное событие
+        window.dispatchEvent(new CustomEvent('show-auth-modal'));
+        return;
+      }
+      
+      if (!this.dish.likes) {
+        this.dish.likes = [];
+      }
+      
+      const index = this.dish.likes.indexOf(this.currentUser.id);
+      if (index === -1) {
+        this.dish.likes.push(this.currentUser.id);
+      } else {
+        this.dish.likes.splice(index, 1);
+      }
+      
+      this.saveRecipe();
     },
     toggleFavourite() {
-      this.dish.favourites += 1;
+      this.loadCurrentUser()
+
+      if (!this.currentUser) {
+        // Генерируем глобальное событие
+        window.dispatchEvent(new CustomEvent('show-auth-modal'));
+        return;
+      }
+      
+      if (!this.dish.favorites) {
+        this.dish.favorites = [];
+      }
+      
+      const index = this.dish.favorites.indexOf(this.currentUser.id);
+      if (index === -1) {
+        this.dish.favorites.push(this.currentUser.id);
+      } else {
+        this.dish.favorites.splice(index, 1);
+      }
+      
+      this.saveRecipe();
     },
     addComment(commentText) {
-      if (commentText.trim()) {
-        this.dish.comment.push({
-          user: this.currentUser,
-          text: commentText,
-          date: new Date().toLocaleDateString('ru-RU')
-        });
+      if (!this.currentUser) {
+        // Генерируем глобальное событие
+        window.dispatchEvent(new CustomEvent('show-auth-modal'));
+        return;
       }
+      
+      if (!commentText.trim()) return;
+      
+      if (!this.dish.comments) {
+        this.dish.comments = [];
+      }
+      
+      this.dish.comments.push({
+        userId: this.currentUser.id,
+        userName: this.currentUser.name,
+        text: commentText,
+        date: new Date().toLocaleDateString('ru-RU')
+      });
+      
+      this.saveRecipe();
     }
   }
 }
@@ -53,9 +148,11 @@ export default {
 
     <ActionsButton 
       v-if="dish"
-      :likeCount="dish.like"
-      :favouriteCount="dish.favourites"
-      :commentCount="dish.comment.length"
+      :likeCount="dish.likes?.length || 0"
+      :favouriteCount="dish.favorites?.length || 0"
+      :commentCount="dish.comments?.length || 0"
+      :isLiked="isLiked"
+      :isFavorited="isFavorited"
       :onLike="toggleLike"
       :onFavourite="toggleFavourite"
       class="!mb-4"
@@ -153,11 +250,11 @@ export default {
 
     
     <Comments 
-        v-if="dish"
-        :comments="dish.comment"
-        :currentUser="currentUser"
-        @add-comment="addComment"
-      />
+      v-if="dish"
+      :comments="dish.comments"
+      :currentUser="currentUser"
+      @add-comment="addComment"
+    />
   </div>
 
   <div v-else class="container !mx-auto px-4 py-8 text-center">

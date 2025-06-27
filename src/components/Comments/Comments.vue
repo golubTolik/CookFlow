@@ -50,10 +50,10 @@ export default {
         >
           <div class="flex items-start">
             <div class="bg-gray-200 rounded-xl w-16 h-16 flex items-center justify-center !mr-4">
-              <span class="text-xl font-bold w-16 text-center text-gray-500">{{ comment.user.charAt(0) }}</span>
+              <span class="text-xl font-bold w-16 text-center text-gray-500">{{ comment.userName.charAt(0) }}</span>
             </div>
             <div class="flex flex-col !mb-2">
-              <h3 class="!font-semibold text-[16px]">{{ comment.user }}</h3>
+              <h3 class="!font-semibold text-[16px]">{{ comment.userName }}</h3>
               <p class="text-gray-700 text-[14px]">{{ comment.text }}</p>
               <span class="text-gray-500 text-[12px]">{{ comment.date }}</span>
             </div>
