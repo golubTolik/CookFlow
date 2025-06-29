@@ -6,6 +6,10 @@ export default {
         name: "",
         login: "",
         password: "",
+        likedRecipes: [],
+        favoriteRecipes: [],
+        likedArticles: [],
+        favoriteArticles: []
       },
       check: true,
       errorMessage: "",
@@ -22,7 +26,11 @@ export default {
         this.currentUser = {
           id: user.id,
           name: user.name,
-          login: user.login
+          login: user.login,
+          likedRecipes: user.likedRecipes,
+          favoriteRecipes: user.favoriteRecipes,
+          likedArticles: user.likedArticles,
+          favoriteArticles: user.favoriteArticles
         };
         localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
 
@@ -53,7 +61,11 @@ export default {
       this.currentUser = {
         id: newUser.id,
         name: newUser.name,
-        login: newUser.login
+        login: newUser.login,
+        likedRecipes: newUser.likedRecipes,
+        favoriteRecipes: newUser.favoriteRecipes,
+        likedArticles: newUser.likedArticles,
+        favoriteArticles: newUser.favoriteArticles
       };
       localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
 
