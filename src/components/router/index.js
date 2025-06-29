@@ -6,6 +6,7 @@ import RecipesView  from '../Pages/RecipesView.vue'
 import ArticlesView  from '../Pages/ArticlesView.vue'
 import RecipeView from '../Pages/RecipeView.vue'
 import ArticleView from '../Pages/ArticleView.vue'
+import AccountView from '../Pages/AccountView.vue'
 
 const routes = [
   {
@@ -33,6 +34,11 @@ const routes = [
     name: 'article',
     component: ArticleView,
     props: true
+  },
+  {
+    path: '/account',
+    name: 'account',
+    component: AccountView 
   }
 ]
 

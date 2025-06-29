@@ -94,7 +94,9 @@ export default {
 
       <div class="hidden md:block">
         <div v-if="currentUser" class="flex items-center gap-4">
-          <span class="text-gray-700">Привет, {{ currentUser.name }}!</span>
+          <router-link to="/account">
+            <span class="text-gray-700">Привет, {{ currentUser.name }}!</span>
+          </router-link>
           <button @click="logout" 
                   class="px-4 py-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition">
             Выйти
@@ -125,7 +127,9 @@ export default {
         </router-link>
 
         <div v-if="currentUser" class="py-3 px-2 flex flex-col gap-2">
-          <span class="text-gray-700">Привет, {{ currentUser.name }}!</span>
+          <router-link to="/account">
+            <span class="text-gray-700">Привет, {{ currentUser.name }}!</span>
+          </router-link>
           <button @click="logout" 
                   class="w-full py-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition">
             Выйти

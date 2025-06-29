@@ -110,7 +110,7 @@ export default {
         <img class="w-[32px] text-4xl" src="@/components/icons/food.svg" alt="">
       </div>
     </div>
-    <div class="py-3 px-5">
+    <div class="py-3 px-5 flex flex-col justify-between h-auto lg:h-41">
       <div class="flex justify-between">
         <h3 class="text-xl !font-bold font-[Comfortaa] text-gray-800">{{ localDish.name }}</h3>
         <div class="flex items-center">

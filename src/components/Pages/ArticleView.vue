@@ -155,13 +155,13 @@ export default {
     <div class="container !mx-auto px-4 py-8">
       <!-- Кнопка "Назад" -->
       <button 
-        @click="$router.push(`/articles`)"
+        @click="$router.go(-1)"
         class="!mb-6 flex items-center text-[#06D6A0] hover:text-[#05c191] transition"
       >
         <svg class="w-4 h-4 !mr-2" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
         </svg>
-        Назад к статьям
+        Назад
       </button>
 
       <ActionsButton 
