@@ -17,7 +17,7 @@ export default {
     </div>
           
     <!-- Контент статьи -->
-    <div class="p-6 h-auto lg:h-66 flex flex-col justify-between">
+    <div class="p-6 min-h-[250px] lg:h-66 flex flex-col justify-between">
         <div>
             <div class="flex items-center  text-gray-500 mb-2 text-xs sm:text-sm">
                 <span>{{ article.date }}</span>

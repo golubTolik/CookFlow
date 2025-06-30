@@ -54,6 +54,28 @@ export default {
       
       localStorage.setItem('recipes', JSON.stringify(recipes));
     },
+    savelikedRecipes(){
+      const index = this.currentUser.likedRecipes.findIndex(r => r.id === this.dish.id);
+
+      if (index !== -1) {
+        this.currentUser.likedRecipes[index] = this.dish.id;
+      } else {
+        this.currentUser.likedRecipes.push(this.dish.id);
+      }
+
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+    },
+    savefavoriteRecipes(){
+      const index = this.currentUser.favoriteRecipes.findIndex(r => r.id === this.dish.id);
+
+      if (index !== -1) {
+        this.currentUser.favoriteRecipes[index] = this.dish.id;
+      } else {
+        this.currentUser.favoriteRecipes.push(this.dish.id);
+      }
+
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUser));    
+    },
     toggleLike() {
       this.loadCurrentUser()
 
@@ -75,6 +97,7 @@ export default {
       }
       
       this.saveRecipe();
+      this.savelikedRecipes();
     },
     toggleFavourite() {
       this.loadCurrentUser()
@@ -97,6 +120,7 @@ export default {
       }
       
       this.saveRecipe();
+      this.savefavoriteRecipes();
     }
   }
 }
@@ -110,7 +134,7 @@ export default {
         <img class="w-[32px] text-4xl" src="@/components/icons/food.svg" alt="">
       </div>
     </div>
-    <div class="py-3 px-5 flex flex-col justify-between h-auto lg:h-41">
+    <div class="py-3 px-5 flex flex-col justify-between h-auto sm:h-41">
       <div class="flex justify-between">
         <h3 class="text-xl !font-bold font-[Comfortaa] text-gray-800">{{ localDish.name }}</h3>
         <div class="flex items-center">

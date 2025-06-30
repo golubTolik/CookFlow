@@ -80,6 +80,28 @@ export default {
       
       localStorage.setItem('articles', JSON.stringify(articles));
     },
+    savelikedArticles(){
+      const index = this.currentUser.likedArticles.findIndex(r => r.id === this.article.id);
+
+      if (index !== -1) {
+        this.currentUser.likedArticles[index] = this.article.id;
+      } else {
+        this.currentUser.likedArticles.push(this.article.id);
+      }
+
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+    },
+    savefavoriteArticles(){
+      const index = this.currentUser.favoriteArticles.findIndex(r => r.id === this.article.id);
+
+      if (index !== -1) {
+        this.currentUser.favoriteArticles[index] = this.article.id;
+      } else {
+        this.currentUser.favoriteArticles.push(this.article.id);
+      }
+
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUser));    
+    },
     toggleLike() {
       this.loadCurrentUser()
 
@@ -101,6 +123,7 @@ export default {
       }
       
       this.saveArticle();
+      this.savelikedArticles()
     },
     toggleFavourite() {
       this.loadCurrentUser()
@@ -123,6 +146,7 @@ export default {
       }
       
       this.saveArticle();
+      this.savefavoriteArticles()
     },
     addComment(commentText) {
       if (!this.currentUser) {

@@ -9,7 +9,6 @@ export default {
   },
   data() {
     return {
-      // currentUser: 'Анонимный пользователь'
       dish: null,
       currentUser: null,
       newComment: ""
@@ -62,6 +61,28 @@ export default {
       
       localStorage.setItem('recipes', JSON.stringify(recipes));
     },
+    savelikedRecipes(){
+      const index = this.currentUser.likedRecipes.findIndex(r => r.id === this.dish.id);
+
+      if (index !== -1) {
+        this.currentUser.likedRecipes[index] = this.dish.id;
+      } else {
+        this.currentUser.likedRecipes.push(this.dish.id);
+      }
+
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+    },
+    savefavoriteRecipes(){
+      const index = this.currentUser.favoriteRecipes.findIndex(r => r.id === this.dish.id);
+
+      if (index !== -1) {
+        this.currentUser.favoriteRecipes[index] = this.dish.id;
+      } else {
+        this.currentUser.favoriteRecipes.push(this.dish.id);
+      }
+
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUser));    
+    },
     toggleLike() {
       this.loadCurrentUser()
 
@@ -83,6 +104,7 @@ export default {
       }
       
       this.saveRecipe();
+      this.savelikedRecipes();
     },
     toggleFavourite() {
       this.loadCurrentUser()
@@ -105,6 +127,7 @@ export default {
       }
       
       this.saveRecipe();
+      this.savefavoriteRecipes();
     },
     addComment(commentText) {
       if (!this.currentUser) {

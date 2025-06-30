@@ -23,14 +23,6 @@ export default {
       const storedUser = localStorage.getItem('currentUser');
       if (storedUser) {
         this.userData = JSON.parse(storedUser);
-        
-        // Добавляем поля для избранного
-        if (!this.userData.likedRecipes) {
-          this.userData.likedRecipes = [];
-        }
-        if (!this.userData.favoriteArticles) {
-          this.userData.favoriteArticles = [];
-        }
       }
     },
     
@@ -54,12 +46,12 @@ export default {
       
       // Фильтрация рецептов
       this.likedRecipes = this.allRecipes.filter(recipe => 
-        this.userData.likedRecipes?.includes(recipe.id) || []
+        this.userData.likedRecipes.includes(recipe.id)
       );
       
       // Фильтрация статей
       this.favoriteArticles = this.allArticles.filter(article => 
-        this.userData.favoriteArticles?.includes(article.id) || []
+        this.userData.favoriteArticles.includes(article.id)
       );
     },
   }

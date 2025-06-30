@@ -53,6 +53,12 @@ export default {
     },
     // Метод выхода из системы
     logout() {
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      const index = users.findIndex(u => u.id === this.currentUser.id);
+      if (index !== -1) {
+        users[index] = JSON.parse(localStorage.getItem('currentUser'));
+        localStorage.setItem('users', JSON.stringify(users));
+      }
       this.currentUser = null;
       localStorage.removeItem('currentUser');
       this.isMenuOpen = false;
@@ -64,7 +70,7 @@ export default {
 
 <template>
   <header class="flex flex-col justify-center font-[Comfortaa]">
-    <div class="container mx-auto flex flex-wrap justify-between items-center px-4 py-2">
+    <div class="container !mx-auto flex flex-wrap justify-between items-center px-4 py-2">
       <router-link to="/" class="w-[120px] md:w-[150px] lg:w-[200px]">
         <img :src="logoPath" alt="Логотип" class="w-full">
       </router-link>

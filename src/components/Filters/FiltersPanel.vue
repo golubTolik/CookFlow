@@ -36,7 +36,7 @@ export default {
         const isFiltersOpen = ref(false);
         
         const checkMobile = () => {
-            isMobile.value = window.innerWidth <= 768;
+            isMobile.value = window.innerWidth <= 1023;
         };
         
         onMounted(() => {
