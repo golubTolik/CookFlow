@@ -9,6 +9,8 @@ export default {
       allRecipes: [],
       allArticles: [],
       likedRecipes: [],
+      favoriteRecipes: [],
+      likedArticles: [],
       favoriteArticles: []
     }
   },
@@ -48,8 +50,14 @@ export default {
       this.likedRecipes = this.allRecipes.filter(recipe => 
         this.userData.likedRecipes.includes(recipe.id)
       );
+      this.favoriteRecipes = this.allRecipes.filter(recipe => 
+        this.userData.favoriteRecipes.includes(recipe.id)
+      );
       
       // Фильтрация статей
+      this.likedArticles = this.allArticles.filter(article => 
+        this.userData.likedArticles.includes(article.id)
+      );
       this.favoriteArticles = this.allArticles.filter(article => 
         this.userData.favoriteArticles.includes(article.id)
       );
@@ -101,6 +109,46 @@ export default {
           <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <ListItem v-for="recipe in likedRecipes" :key="recipe.id" :dish="recipe"></ListItem>
           </div>
+        </section>
+
+        <!-- Избранные рецепты -->
+        <section class="!mb-12">
+          <div class="flex justify-between items-center !mb-4">
+            <h2 class="text-2xl !font-bold text-gray-800 font-[Comfortaa]">Избранные рецепты</h2>
+            <span class="bg-gray-200 text-gray-700 rounded-full px-3 py-1 text-sm">
+              {{ favoriteRecipes.length }}
+            </span>
+          </div>
+
+          <div v-if="favoriteRecipes.length === 0" class="text-center py-8 bg-white rounded-xl shadow">
+            <p class="text-gray-500">Вы еще не лайкнули ни одного рецепта</p>
+          </div>
+
+          <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <ListItem v-for="recipe in favoriteRecipes" :key="recipe.id" :dish="recipe"></ListItem>
+          </div>
+        </section>
+
+        <!-- Лайкнутые статьи -->
+        <section class="!mb-12">
+            <div class="flex justify-between items-center !mb-4">
+                <h2 class="text-2xl !font-bold text-gray-800 font-[Comfortaa]">Лайкнутые статьи</h2>
+                <span class="bg-gray-200 text-gray-700 rounded-full px-3 py-1 text-sm">
+                {{ likedArticles.length }}
+                </span>
+            </div>
+
+            <div v-if="likedArticles.length === 0" class="text-center py-8 bg-white rounded-xl shadow">
+                <p class="text-gray-500">У вас нет избранных статей</p>
+            </div>
+
+            <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <ArticleItem
+                    v-for="article in likedArticles" 
+                    :key="article.id" 
+                    :article="article"
+                ></ArticleItem>
+            </div>
         </section>
 
         <!-- Избранные статьи -->
