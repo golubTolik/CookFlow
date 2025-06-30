@@ -109,7 +109,7 @@ export default {
           </div>
 
           <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <ListItem v-for="recipe in likedRecipes" :key="recipe.id" :dish="recipe"></ListItem>
+            <ListItem v-for="recipe in likedRecipes" :key="recipe.id" :dish="recipe" @click="$router.push(`/recipe/${recipe.id}`)"></ListItem>
           </div>
         </section>
 
@@ -123,11 +123,11 @@ export default {
           </div>
 
           <div v-if="favoriteRecipes.length === 0" class="text-center py-8 bg-white rounded-xl shadow">
-            <p class="text-gray-500">Вы еще не лайкнули ни одного рецепта</p>
+            <p class="text-gray-500">У вас нет избранных рецептов</p>
           </div>
 
           <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <ListItem v-for="recipe in favoriteRecipes" :key="recipe.id" :dish="recipe"></ListItem>
+            <ListItem v-for="recipe in favoriteRecipes" :key="recipe.id" :dish="recipe" @click="$router.push(`/recipe/${recipe.id}`)"                                                                                                               ></ListItem>
           </div>
         </section>
 
@@ -141,7 +141,7 @@ export default {
             </div>
 
             <div v-if="likedArticles.length === 0" class="text-center py-8 bg-white rounded-xl shadow">
-                <p class="text-gray-500">У вас нет избранных статей</p>
+                <p class="text-gray-500">Вы еще не лайкнули ни одной статьи</p>
             </div>
 
             <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
