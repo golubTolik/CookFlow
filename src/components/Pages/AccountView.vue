@@ -61,6 +61,8 @@ export default {
       this.favoriteArticles = this.allArticles.filter(article => 
         this.userData.favoriteArticles.includes(article.id)
       );
+
+      // location.reload()
     },
   }
 }
