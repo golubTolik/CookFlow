@@ -187,17 +187,17 @@ export default {
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="bg-white p-6 rounded-xl shadow-md text-center">
             <div class="text-[#06D6A0] text-4xl !mb-4">✓</div>
-            <h3 class="text-xl !font-bold !mb-2">Проверенные рецепты</h3>
+            <h3 class="text-xl !font-bold !mb-2 font-[Comfortaa]">Проверенные рецепты</h3>
             <p class="text-gray-600">Каждый рецепт протестирован и получил положительные отзывы</p>
           </div>
           <div class="bg-white p-6 rounded-xl shadow-md text-center">
             <div class="text-4xl !mb-4">⏱️</div>
-            <h3 class="text-xl !font-bold !mb-2">Экономия времени</h3>
+            <h3 class="text-xl !font-bold !mb-2 font-[Comfortaa]">Экономия времени</h3>
             <p class="text-gray-600">Фильтры по времени приготовления помогут найти идеальный вариант</p>
           </div>
           <div class="bg-white p-6 rounded-xl shadow-md text-center">
             <div class="text-4xl !mb-4">❤️</div>
-            <h3 class="text-xl !font-bold !mb-2">Для всех вкусов</h3>
+            <h3 class="text-xl !font-bold !mb-2 font-[Comfortaa]">Для всех вкусов</h3>
             <p class="text-gray-600">Для каждого образа жизни и кулинарных пристрастий</p>
           </div>
         </div>
