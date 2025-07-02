@@ -37,9 +37,9 @@ export default {
         .slice(0, 4);
     },
     heroStyle() {
-        return {
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${this.heroImage})`
-        };
+      return {
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${this.heroImage})`
+      };
     },
   },
   
@@ -65,7 +65,6 @@ export default {
     },
     selectCategory(category) {
       this.$emit('category-selected', category);
-      this.goToSlide(2);
     },
     openDishe(id){
       this.$router.push(`/recipe/${id}`);
